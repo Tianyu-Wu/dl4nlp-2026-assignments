@@ -1,0 +1,35 @@
+Bootstrap: docker
+From: pytorch/pytorch:2.5.1-cuda12.1-cudnn9-runtime
+
+%post
+    pip install --no-cache-dir \
+        nltk \
+        transformers \
+        "accelerate>=1.1.0" \
+        datasets \
+        matplotlib \
+        scikit-learn
+
+    # punkt_tab is required by nltk.word_tokenize in NLTK >= 3.9
+    python -c "import nltk; nltk.download('punkt_tab')"
+
+%environment
+    export PATH=/opt/conda/bin:$PATH
+
+%labels
+    Version 1.0
+    Description DL4NLP 2026 Assignment 1 environment
+
+%help
+    Container for DL4NLP 2026 Assignment 1.
+    Includes: PyTorch 2.5.1 (CUDA 12.1), NLTK, HuggingFace Transformers,
+    HuggingFace Datasets, Matplotlib, scikit-learn.
+
+    Build:
+        apptainer build dl4nlp.sif dl4nlp.def
+
+    Run interactively with GPU:
+        apptainer shell --nv dl4nlp.sif
+
+    Run a script with GPU:
+        apptainer exec --nv dl4nlp.sif python A1_skeleton.py

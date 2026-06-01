@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Train A1",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/a1_1/train.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/a1_1",
+            "justMyCode": false
+        }
+    ]
+}
