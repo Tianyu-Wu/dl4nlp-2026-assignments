@@ -9,6 +9,7 @@ from transformers.modeling_outputs import CausalLMOutput
 from torch.utils.data import DataLoader
 from torch.utils.data import Subset
 from sklearn.decomposition import TruncatedSVD
+from tqdm import tqdm
 import matplotlib.pyplot as plt
 import numpy as np
 import sys, time, os
@@ -291,7 +292,8 @@ class A1Trainer:
         epochs_without_improvement = 0
         for epoch in range(int(args.num_train_epochs)):
             self.model.train()
-            for batch in train_loader:
+            progress = tqdm(train_loader, desc=f'Epoch {epoch+1}/{int(args.num_train_epochs)}', leave=True)
+            for batch in progress:
                 input_ids = self.tokenizer(batch['text'], padding=True, truncation=True, return_tensors='pt')['input_ids']
                 labels = input_ids.clone()
                 labels[labels == self.tokenizer.pad_token_id] = -100
@@ -304,6 +306,7 @@ class A1Trainer:
                 optimizer.zero_grad()
                 loss.backward()
                 optimizer.step()
+                progress.set_postfix(loss=f'{loss.item():.4f}')
 
             # EVALUATION:
             if args.eval_strategy == 'epoch':

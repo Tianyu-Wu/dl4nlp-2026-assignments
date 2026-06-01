@@ -9,6 +9,33 @@
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}/a1_1",
             "justMyCode": false
+        },
+        {
+            "name": "Evaluate A1",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/a1_1/evaluate.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/a1_1",
+            "justMyCode": false
+        },
+        {
+            "name": "Train A2",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/a1_2/train.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/a1_2",
+            "justMyCode": false
+        },
+        {
+            "name": "Evaluate A2",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/a1_2/evaluate.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/a1_2",
+            "justMyCode": false
         }
     ]
 }

@@ -8,7 +8,8 @@ From: pytorch/pytorch:2.5.1-cuda12.1-cudnn9-runtime
         "accelerate>=1.1.0" \
         datasets \
         matplotlib \
-        scikit-learn
+        scikit-learn \
+        tqdm
 
     # punkt_tab is required by nltk.word_tokenize in NLTK >= 3.9
     python -c "import nltk; nltk.download('punkt_tab')"
