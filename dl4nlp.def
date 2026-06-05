@@ -1,15 +1,24 @@
 Bootstrap: docker
-From: pytorch/pytorch:2.5.1-cuda12.1-cudnn9-runtime
+From: pytorch/pytorch:2.6.0-cuda12.6-cudnn9-runtime
 
 %post
     pip install --no-cache-dir \
         nltk \
-        transformers \
+        "transformers<4.48" \
         "accelerate>=1.1.0" \
         datasets \
+        evaluate \
+        rouge_score \
         matplotlib \
         scikit-learn \
-        tqdm
+        tqdm \
+        langchain \
+        langchain-community \
+        langchain-huggingface \
+        langchain-core \
+        sentence_transformers \
+        langchain-chroma \
+        ipykernel
 
     # punkt_tab is required by nltk.word_tokenize in NLTK >= 3.9
     python -c "import nltk; nltk.download('punkt_tab')"
@@ -18,13 +27,14 @@ From: pytorch/pytorch:2.5.1-cuda12.1-cudnn9-runtime
     export PATH=/opt/conda/bin:$PATH
 
 %labels
-    Version 1.0
-    Description DL4NLP 2026 Assignment 1 environment
+    Version 2.0
+    Description DL4NLP 2026 Assignments 1-4 environment
 
 %help
-    Container for DL4NLP 2026 Assignment 1.
+    Container for DL4NLP 2026 Assignments 1-4.
     Includes: PyTorch 2.5.1 (CUDA 12.1), NLTK, HuggingFace Transformers,
-    HuggingFace Datasets, Matplotlib, scikit-learn.
+    HuggingFace Datasets, Evaluate, ROUGE, Matplotlib, scikit-learn, tqdm,
+    LangChain (community, huggingface, chroma), sentence-transformers.
 
     Build:
         apptainer build dl4nlp.sif dl4nlp.def
@@ -33,4 +43,4 @@ From: pytorch/pytorch:2.5.1-cuda12.1-cudnn9-runtime
         apptainer shell --nv dl4nlp.sif
 
     Run a script with GPU:
-        apptainer exec --nv dl4nlp.sif python A1_skeleton.py
+        apptainer exec --nv dl4nlp.sif python train.py
