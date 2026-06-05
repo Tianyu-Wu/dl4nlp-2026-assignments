@@ -1,0 +1,13 @@
+AI Usage Statement
+==================
+
+AI assistance was used across the assignments in this repository
+as a learning and debugging aid. Specifically, AI was used to:
+
+- Explain concepts and clarify assignment requirements
+- Review and give feedback on code written by the student
+- Help interpret error messages and debug issues
+
+All code implementations were written by the student. AI was not used to generate
+complete solutions; its role was to support understanding of the material rather
+than to produce answers directly.
