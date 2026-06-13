@@ -209,6 +209,6 @@ __marimo__/
 # Data
 a1_1/*.txt
 outputs/
-a1_1/outputs/
+a1_1/outputs/model/
 a1_2/*.md
 a2_2/ori_pqal.json
