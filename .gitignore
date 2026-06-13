@@ -210,4 +210,5 @@ __marimo__/
 a1_1/*.txt
 outputs/
 a1_1/outputs/
+a1_2/*.md
 a2_2/ori_pqal.json
