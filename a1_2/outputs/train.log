@@ -1,0 +1,30 @@
+21:53:07  Loading tokenizer from ../a1_1/outputs/model/a1_tokenizer
+21:53:07  Vocabulary size: 10000
+21:53:10  Loading dataset...
+21:53:10  HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/text/text.py "HTTP/1.1 200 OK"
+21:53:13  Train: 147059  Val: 17874
+21:54:02  Parameters: 8,268,032
+21:58:34  Loading tokenizer from ../a1_1/outputs/model/a1_tokenizer
+21:58:34  Vocabulary size: 10000
+21:58:36  Loading dataset...
+21:58:36  HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/text/text.py "HTTP/1.1 200 OK"
+21:58:36  Train: 147059  Val: 17874
+21:58:37  Parameters: 8,268,032
+21:59:52  Loading tokenizer from ../a1_1/outputs/model/a1_tokenizer
+21:59:52  Vocabulary size: 10000
+21:59:52  Loading dataset...
+21:59:53  HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/text/text.py "HTTP/1.1 200 OK"
+21:59:55  Train: 147059  Val: 17874
+21:59:55  Parameters: 8,268,032
+22:29:12  Loading tokenizer from ../a1_1/outputs/model/a1_tokenizer
+22:29:12  Vocabulary size: 10000
+22:29:17  Loading dataset...
+22:29:17  HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/text/text.py "HTTP/1.1 200 OK"
+22:29:17  Train: 147059  Val: 17874
+22:29:19  Parameters: 8,268,032
+22:46:53  Loading tokenizer from ../a1_1/outputs/model/a1_tokenizer
+22:46:53  Vocabulary size: 10000
+22:46:53  Loading dataset...
+22:46:53  HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/text/text.py "HTTP/1.1 200 OK"
+22:46:54  Train: 147059  Val: 17874
+22:46:54  Parameters: 8,268,032

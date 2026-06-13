@@ -1,0 +1,248 @@
+23:17:08  Loading tokenizer...
+23:17:08  Loading model from outputs/model...
+23:17:08  HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/text/text.py "HTTP/1.1 200 OK"
+23:17:08  Computing perplexity...
+23:18:43  Perplexity: 47.1
+23:18:43  
+=== Task 3.1: Next word prediction ===
+23:18:43  Prompt: 'She lives in San' → next: she lives in san diego
+23:18:43  
+=== Experiment 1: Effect of temperature ===
+23:18:43  [temp=0.5] in natural language processing, a <UNK> is a <UNK> (<UNK>) <UNK> <UNK>. <EOS>
+23:18:43  [temp=1.0] in natural language processing, a <UNK> compiler is an integral part of a software implementation in the software sciences, written and compiled by a compiler . <EOS>
+23:18:43  [temp=1.5] in natural language processing, a <UNK> is a technique with many types of abstraction to treat patients . hence any formal or <UNK> definition to <UNK> or all human responses in abstract or descriptive dictionaries is a formal methodology for knowledge between the inputs and its scope: a computer with a meaning form of language
+23:18:44  [temp=2.0] in natural language processing, a <UNK> derivative or <UNK> <UNK> may refer as a second, <UNK>, or a specific external component which creates <UNK> derivatives of a source as of potential export gain at each stage . examples of other variables involved in language processing include data mining, such as an efficient distribution
+23:18:44  
+=== Experiment 2: Effect of top-k ===
+23:18:44  [topk=1] in natural language processing, a <UNK> is a <UNK> of the <UNK> of the <UNK>. <EOS>
+23:18:44  [topk=5] in natural language processing, a <UNK> is an <UNK> <UNK> <UNK> that <UNK> the <UNK> to a given <UNK>, which <UNK> a function of <UNK>. the <UNK> <UNK> <UNK> a <UNK> of <UNK> and the <UNK> <UNK>. it is also <UNK> in the <UNK> of the language, which is a <UNK> <UNK>
+23:18:44  [topk=50] in natural language processing, a <UNK> is a derivative of a function that <UNK> an input response that does not have the output (or <UNK>) of an output from an input, or using this definition as necessary to indicate its input . it generally has a <UNK> error, the ability to produce
+23:18:44  [topk=200] in natural language processing, a <UNK> encoding or operation is an operation . <EOS>
+23:18:44  
+=== Experiment 3: Different prompts (temp=1.0, topk=50) ===
+23:18:45  Prompt: 'In natural language processing, a Transformer'
+Generated: in natural language processing, a <UNK> is characterized as <UNK>. the <UNK> of a string is a subset of a complex c and an <UNK> (<UNK> and <UNK>), whereas the <UNK> (<UNK> or <UNK>) is a class of functions in which variables are defined (<UNK>, <UNK>), algebraic spaces () and analytic functions (<UNK>, <UNK>, <UNK> and <UNK>) <UNK>. <EOS>
+
+23:18:45  Prompt: 'Is Stockholm the capital of Sweden? Answer yes or no. The answer is'
+Generated: is stockholm the capital of sweden? answer yes or no . the answer is wrong . <EOS>
+
+23:18:45  Prompt: 'Write a Python program that reverses a list.'
+Generated: write a <UNK> program that <UNK> a list . "<UNK>" for this list is a set of rules that <UNK> each column . these rules are referred to as "<UNK>" (<UNK>). (<UNK>) is not the same as a library for these categories (<UNK>). note: there is a system which may be modified <UNK> based on its form . <EOS>
+
+23:18:45  
+=== Experiment 4: Greedy (topk=1) is deterministic ===
+23:18:45  [greedy] in natural language processing, a <UNK> is a <UNK> of the <UNK> of the <UNK>. <EOS>
+23:18:45  [greedy] in natural language processing, a <UNK> is a <UNK> of the <UNK> of the <UNK>. <EOS>
+23:18:45  
+=== Experiment 4: Sampling (topk=50) is non-deterministic ===
+23:18:46  [sample] in natural language processing, a <UNK> <UNK> does not need an external <UNK>, due to the difficulty on the user's computer <UNK>. in the u.s. the hardware is "in the <UNK> <UNK>". at that time the customer is "far far" the device is played on their own computer
+23:18:46  [sample] in natural language processing, a <UNK> <UNK> is the physical activity that <UNK> a string . it is a <UNK> complex, although it is not in its normal level . in computers' language, this expression is particularly <UNK>. many <UNK>, such as <UNK> <UNK>, are related to the fact of
+23:18:46  
+=== Task 3.3: OLMo-2 1B generation ===
+23:18:46  HTTP Request: HEAD https://huggingface.co/allenai/OLMo-2-0425-1B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+23:18:46  HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/OLMo-2-0425-1B/a1847dff35000b4271fa70afc5db10fd29fedbdf/config.json "HTTP/1.1 200 OK"
+23:18:46  HTTP Request: HEAD https://huggingface.co/allenai/OLMo-2-0425-1B/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+23:18:46  HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/OLMo-2-0425-1B/a1847dff35000b4271fa70afc5db10fd29fedbdf/tokenizer_config.json "HTTP/1.1 200 OK"
+23:18:46  HTTP Request: HEAD https://huggingface.co/allenai/OLMo-2-0425-1B/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+23:18:46  HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/OLMo-2-0425-1B/a1847dff35000b4271fa70afc5db10fd29fedbdf/tokenizer_config.json "HTTP/1.1 200 OK"
+23:18:47  HTTP Request: GET https://huggingface.co/api/models/allenai/OLMo-2-0425-1B/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+23:18:47  HTTP Request: GET https://huggingface.co/api/models/allenai/OLMo-2-0425-1B/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+23:18:47  HTTP Request: GET https://huggingface.co/api/models/allenai/OLMo-2-0425-1B "HTTP/1.1 200 OK"
+23:18:48  HTTP Request: HEAD https://huggingface.co/allenai/OLMo-2-0425-1B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+23:18:48  HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/OLMo-2-0425-1B/a1847dff35000b4271fa70afc5db10fd29fedbdf/config.json "HTTP/1.1 200 OK"
+23:18:48  HTTP Request: HEAD https://huggingface.co/allenai/OLMo-2-0425-1B/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+23:18:48  HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/OLMo-2-0425-1B/a1847dff35000b4271fa70afc5db10fd29fedbdf/generation_config.json "HTTP/1.1 200 OK"
+23:19:22  Prompt: 'In natural language processing, a Transformer'
+OLMo-2: In natural language processing, a Transformer model is composed of two sub-modules: one encoders sub-module (encoder) and one decoders sub-module (decoders). The first sub-module (encoder) takes in the input sentence and passes it sequentially through the stacked layers until it reaches the final output layer. The last layer computes the attention score of each token in the sentence and produces the final output by combining the attention scores of the corresponding tokens in the sentence, respectively.
+In this study, we have compared the performance of the encoder-based
+
+23:19:50  Prompt: 'Is Stockholm the capital of Sweden? Answer yes or no. The answer is'
+OLMo-2: Is Stockholm the capital of Sweden? Answer yes or no. The answer is no, Stockholm isn't.  Question: In which country did Stockholm become the capital of a country?   Context: The area around Stockholm proper is defined as Stockholm Area (Stockholm stad), encompassing the City of Stockholm and 10 province-level cities, known as Stockholm Metropolitan Area. The metropolitan area is the second most travelled[update], most populous and the most expensive city in Sweden. It is also one of the fastest growing areas of Sweden with its own regional parliament and government. The metropolitan
+
+23:20:18  Prompt: 'Write a Python program that reverses a list.'
+OLMo-2: Write a Python program that reverses a list. This includes both creating the list and then reversing its contents. Your program should prompt the user to input a list. On request, write a list in reverse-arrangement. Print your reverses on the standard outputstream. 1. Define a class with private members 'data'. Your class should have a public method ‘reverse()’. This method should take a list object as parameter. The data in this list should be reversed. 2. Write a class with the private members 'data',
+
+23:20:18  
+=== Task 3.3 (optional): Weight copying ===
+23:20:18  Weight copy failed: 'Olmo2Config' object has no attribute 'rope_theta'
+23:23:49  Loading tokenizer...
+23:24:40  Loading model from outputs/model...
+23:24:42  HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/text/text.py "HTTP/1.1 200 OK"
+23:24:42  
+=== Task 3.1: Next word prediction ===
+23:24:42  Prompt: 'She lives in San' → next: she lives in san diego
+23:24:42  
+=== Experiment 1: Effect of temperature ===
+23:24:42  [temp=0.5] in natural language processing, a <UNK> is the process of <UNK> the <UNK> "<UNK>". <EOS>
+23:24:43  [temp=1.0] in natural language processing, a <UNK> is a field of abstract computer science . the computer scientists association has a small number of applications in computing science . the development community of america is an organization for the <UNK> of the natural sciences . it is among the best and most important computer science <UNK>.
+23:24:43  [temp=1.5] in natural language processing, a <UNK> field at "c" is an algebraic range of fields called an intrinsic field formula_1 through which many elements in the structure called the ring identity . (there therefore little interest related among the base classes nor for a compact group of elements . this property does not
+23:24:44  [temp=2.0] in natural language processing, a <UNK> is either using it . examples include any of (1) input signals or sound sounds through another string on either the output (1) display desired using (20 in per table with no data processing unit that contains the output component of bits) with the
+23:24:44  
+=== Experiment 2: Effect of top-k ===
+23:24:44  [topk=1] in natural language processing, a <UNK> is a <UNK> of the <UNK> of the <UNK>. <EOS>
+23:24:44  [topk=5] in natural language processing, a <UNK> is a field that is not <UNK> by a <UNK>. this <UNK> <UNK> the <UNK> of a given field of input and output . this is <UNK> by an <UNK> of the computer's input and output, which is <UNK> by a <UNK>. this is <UNK> by
+23:24:45  [topk=50] in natural language processing, a <UNK> <UNK> was designed to detect the <UNK> potential of a person's computer's behavior for a computer . this is called the <UNK> of a computer and has been interpreted in terms of the hardware and software needed to enable the user to identify the particular computer . this
+23:24:45  [topk=200] in natural language processing, a <UNK> is a combination of five phases: <EOS>
+23:24:45  
+=== Experiment 3: Different prompts (temp=1.0, topk=50) ===
+23:24:45  Prompt: 'In natural language processing, a Transformer'
+Generated: in natural language processing, a <UNK> is the process of production of a mixture that is in an <UNK> system, and the process of production is the result of <UNK> synthesis of energy and the reaction of which the surface of a fluid and flow produces the entropy of the fluid and the equilibrium becomes: <EOS>
+
+23:24:46  Prompt: 'Is Stockholm the capital of Sweden? Answer yes or no. The answer is'
+Generated: is stockholm the capital of sweden? answer yes or no . the answer is to be given the same capital: there is no doubt about the existence of the existence of any other area of <UNK>, and that is there is no doubt when not belonging . if a proof that the existence of the <UNK> is <UNK> any other element of the choice of "a". <EOS>
+
+23:24:46  Prompt: 'Write a Python program that reverses a list.'
+Generated: write a <UNK> program that <UNK> a list . <EOS>
+
+23:24:46  
+=== Experiment 4: Greedy (topk=1) is deterministic ===
+23:24:46  [greedy] in natural language processing, a <UNK> is a <UNK> of the <UNK> of the <UNK>. <EOS>
+23:24:46  [greedy] in natural language processing, a <UNK> is a <UNK> of the <UNK> of the <UNK>. <EOS>
+23:24:46  
+=== Experiment 4: Sampling (topk=50) is non-deterministic ===
+23:24:48  [sample] in natural language processing, a <UNK> (sound chip, or computer) is a type of storage device designed to store or store information encoded information by the device in a cache . in computer science, an application of a word <UNK> can be found for storage data or for particular data . <EOS>
+23:24:52  [sample] in natural language processing, a <UNK> is an abstract machine and is called <UNK> – <UNK> – <UNK> – <UNK> – <UNK> – <UNK> – <UNK> – <UNK> – <UNK> – <UNK> – <UNK> – 1 <UNK> of the context-free elements . in addition, the <UNK> and <UNK> <UNK> form a "<UNK>" linear
+23:24:52  
+=== Task 3.3: OLMo-2 1B generation ===
+23:24:52  HTTP Request: HEAD https://huggingface.co/allenai/OLMo-2-0425-1B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+23:24:52  HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/OLMo-2-0425-1B/a1847dff35000b4271fa70afc5db10fd29fedbdf/config.json "HTTP/1.1 200 OK"
+23:24:52  HTTP Request: HEAD https://huggingface.co/allenai/OLMo-2-0425-1B/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+23:24:52  HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/OLMo-2-0425-1B/a1847dff35000b4271fa70afc5db10fd29fedbdf/tokenizer_config.json "HTTP/1.1 200 OK"
+23:24:53  HTTP Request: HEAD https://huggingface.co/allenai/OLMo-2-0425-1B/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+23:24:53  HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/OLMo-2-0425-1B/a1847dff35000b4271fa70afc5db10fd29fedbdf/tokenizer_config.json "HTTP/1.1 200 OK"
+23:24:53  HTTP Request: GET https://huggingface.co/api/models/allenai/OLMo-2-0425-1B/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+23:24:53  HTTP Request: GET https://huggingface.co/api/models/allenai/OLMo-2-0425-1B/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+23:24:53  HTTP Request: GET https://huggingface.co/api/models/allenai/OLMo-2-0425-1B "HTTP/1.1 200 OK"
+23:24:54  HTTP Request: HEAD https://huggingface.co/allenai/OLMo-2-0425-1B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+23:24:54  HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/OLMo-2-0425-1B/a1847dff35000b4271fa70afc5db10fd29fedbdf/config.json "HTTP/1.1 200 OK"
+23:24:54  HTTP Request: HEAD https://huggingface.co/allenai/OLMo-2-0425-1B/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+23:24:54  HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/OLMo-2-0425-1B/a1847dff35000b4271fa70afc5db10fd29fedbdf/generation_config.json "HTTP/1.1 200 OK"
+23:25:27  Prompt: 'In natural language processing, a Transformer'
+OLMo-2: In natural language processing, a Transformer is commonly referred to as a "sequence-to-sequence model." The model consists of multiple layers of self-attention blocks that capture long-range dependencies between adjacent tokens within a long sequence of input text. These models have achieved significant success at tackling various natural language processing tasks like sentiment analysis, language translation, machine translation, question answering, natural language inference, summarization, and information isolation.
+
+In short, Transformers are a type of neural network architecture designed specifically for sequence learning problems with long-range dependencies. By
+
+23:25:42  Prompt: 'Is Stockholm the capital of Sweden? Answer yes or no. The answer is'
+OLMo-2: Is Stockholm the capital of Sweden? Answer yes or no. The answer is no.
+No
+Is the capital of France Brest or Bordeaux? Answer yes or no. The answer is no.
+no
+Is The Bahamas independent or dependent? Answer yes or no. The answer is no.
+
+23:26:14  Prompt: 'Write a Python program that reverses a list.'
+OLMo-2: Write a Python program that reverses a list.  Reverse the list backwards by removing the first element if it is a negative number.
+Negative numbers can be easily dealt with by using the - sign.  If you find a negative number in a list after the - sign, 
+remove it by using list.pop() before calling Reverse().
+
+For loops are typically better than recursion for reversing a list, 
+particularly if there are many negative numbers.
+
+Here is an example with a list named numbers.  Create a list named words that has 1000
+
+23:26:14  
+=== Task 3.3 (optional): Weight copying ===
+23:26:14  OLMo-2 config attributes: {'rope_parameters': {'rope_theta': 500000, 'rope_type': 'default'}}
+23:26:29  Weight copy successful — shapes are compatible.
+23:26:32  OLMo-2 top next token:  Stockholm
+23:26:32  A2 (copied) top next token:  Stockholm
+23:26:32  Outputs match: False
+11:26:16  Loading tokenizer...
+11:26:16  Loading model from outputs/model...
+11:26:17  HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/text/text.py "HTTP/1.1 200 OK"
+11:26:18  Computing perplexity...
+11:27:55  Perplexity: 47.1
+11:27:55  
+=== Task 3.1: Next word prediction ===
+11:27:55  Prompt: 'She lives in San' → next: she lives in san diego
+11:27:55  
+=== Experiment 1: Effect of temperature ===
+11:27:55  [temp=0.5] in natural language processing, a <UNK> is a "<UNK>", a unit of data . it is the language that is <UNK>, and that it is <UNK>. <EOS>
+11:27:56  [temp=1.0] in natural language processing, a <UNK> (<UNK>) of which are performed by a turing machine can be performed by multiple keys, including some of the <UNK> algorithms . this algorithm allows the elements <UNK> and <UNK> to achieve faster <UNK> using a finite number of <UNK> which can be converted into <UNK>,
+11:27:56  [temp=1.5] in natural language processing, a <UNK> or <UNK> code is the primary unit . a particular method is to use in an area used to prepare a code . a type of object type (from iso <UNK>: <UNK> (), that is known when only when one person is the number one character
+11:27:56  [temp=2.0] in natural language processing, a <UNK> "difference 1)" refers to the state of that <UNK> in response to changes to form words or values, as it creates items to change and <UNK> other data through the process <UNK> which results in greater awareness of memory and memory . (that requires that
+11:27:56  
+=== Experiment 2: Effect of top-k ===
+11:27:56  [topk=1] in natural language processing, a <UNK> is a <UNK> of the <UNK> of the <UNK>. <EOS>
+11:27:56  [topk=5] in natural language processing, a <UNK> or a <UNK> is a <UNK> or <UNK>. <EOS>
+11:27:57  [topk=50] in natural language processing, a <UNK> field is an extension of a domain of one variable, to be evaluated at the same time . it can be converted out of a continuous path . <EOS>
+11:27:57  [topk=200] in natural language processing, a <UNK> is an example example of an arbitrary algorithm which can calculate a finite random variable according to the random variables, the point of the difference is <UNK>. <EOS>
+11:27:57  
+=== Experiment 3: Different prompts (temp=1.0, topk=50) ===
+11:27:57  Prompt: 'In natural language processing, a Transformer'
+Generated: in natural language processing, a <UNK> is an approach to a compiler of the data and processes that are stored on the compiler . a function extension is not called a <UNK>. this results from this approach to a compiler's compiler: an <UNK> interface . <EOS>
+
+11:27:57  Prompt: 'Is Stockholm the capital of Sweden? Answer yes or no. The answer is'
+Generated: is stockholm the capital of sweden? answer yes or no . the answer is the most <UNK> algorithm, the advantage (<UNK>); however, it is easier to calculate when there is some other algorithm . for there exist a set of algorithms that exist, namely the <UNK> algorithm and <UNK> algorithms such as the <UNK> algorithm . <EOS>
+
+11:27:57  Prompt: 'Write a Python program that reverses a list.'
+Generated: write a <UNK> program that <UNK> a list . <EOS>
+
+11:27:57  
+=== Experiment 4: Greedy (topk=1) is deterministic ===
+11:27:57  [greedy] in natural language processing, a <UNK> is a <UNK> of the <UNK> of the <UNK>. <EOS>
+11:27:58  [greedy] in natural language processing, a <UNK> is a <UNK> of the <UNK> of the <UNK>. <EOS>
+11:27:58  
+=== Experiment 4: Sampling (topk=50) is non-deterministic ===
+11:27:58  [sample] in natural language processing, a <UNK> is a kind of search, known as artificial intelligence, or artificial intelligence <UNK>. an <UNK> is an area of <UNK> <UNK> with a compiler system (also known as a research agency). these algorithms include information <UNK> as <UNK> by the computer science of knowledge
+11:27:58  [sample] in natural language processing, a <UNK> <UNK> is <UNK>: <EOS>
+11:27:58  
+=== Task 3.3: OLMo-2 1B generation ===
+11:27:58  HTTP Request: HEAD https://huggingface.co/allenai/OLMo-2-0425-1B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+11:27:58  HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/OLMo-2-0425-1B/a1847dff35000b4271fa70afc5db10fd29fedbdf/config.json "HTTP/1.1 200 OK"
+11:27:58  HTTP Request: HEAD https://huggingface.co/allenai/OLMo-2-0425-1B/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+11:27:58  HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/OLMo-2-0425-1B/a1847dff35000b4271fa70afc5db10fd29fedbdf/tokenizer_config.json "HTTP/1.1 200 OK"
+11:27:58  HTTP Request: HEAD https://huggingface.co/allenai/OLMo-2-0425-1B/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+11:27:58  HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/OLMo-2-0425-1B/a1847dff35000b4271fa70afc5db10fd29fedbdf/tokenizer_config.json "HTTP/1.1 200 OK"
+11:27:59  HTTP Request: GET https://huggingface.co/api/models/allenai/OLMo-2-0425-1B/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+11:27:59  HTTP Request: GET https://huggingface.co/api/models/allenai/OLMo-2-0425-1B/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+11:27:59  HTTP Request: GET https://huggingface.co/api/models/allenai/OLMo-2-0425-1B "HTTP/1.1 200 OK"
+11:27:59  HTTP Request: HEAD https://huggingface.co/allenai/OLMo-2-0425-1B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+11:27:59  HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/OLMo-2-0425-1B/a1847dff35000b4271fa70afc5db10fd29fedbdf/config.json "HTTP/1.1 200 OK"
+11:28:00  HTTP Request: HEAD https://huggingface.co/allenai/OLMo-2-0425-1B/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+11:28:00  HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/allenai/OLMo-2-0425-1B/a1847dff35000b4271fa70afc5db10fd29fedbdf/generation_config.json "HTTP/1.1 200 OK"
+11:28:34  Prompt: 'In natural language processing, a Transformer'
+OLMo-2: In natural language processing, a Transformer architecture has shown excellent performance on several NLP tasks, such as large-scale sentence translation, sentiment analysis, and summarization. [1], [5], [12]. There are several Transformer-based algorithms for document understanding. In this work, we use three representative open-source Transformers. The document class is a text document, which can be divided into title and documents. Title is part (sub-section) is a document. In this way, it represents a document that consists of title and its paragraphs.
+
+
+11:28:47  Prompt: 'Is Stockholm the capital of Sweden? Answer yes or no. The answer is'
+OLMo-2: Is Stockholm the capital of Sweden? Answer yes or no. The answer is no.  Question: Is Sweden in the United States? Answer: yes
+
+Output: Yes
+
+
+Input: Consider Input: Fact: The United States became a country in the 1800s. Answer: yes
+
+Output: No
+
+11:29:15  Prompt: 'Write a Python program that reverses a list.'
+OLMo-2: Write a Python program that reverses a list.  To illustrate using your program:
+  >>> reversed
+  >>> reversed("abcd")
+  'cba d"
+
+Does your program implement the method 'reverse'? Yes.
+
+What is the output of the statement
+['one'] + ['two']?
+
+Yes.
+
+What is the output of the command :
+[4,5,6,7,1,4] * 2
+
+Yes.
+
+The next two questions are about "concatenation". Concatenation is the mathematical word for "gluing
+
+11:29:15  
+=== Task 3.3 (optional): Weight copying ===
+11:29:15  OLMo-2 config attributes: {'rope_parameters': {'rope_theta': 500000, 'rope_type': 'default'}}
+11:29:30  Weight copy successful — shapes are compatible.
+11:29:31  OLMo-2 top next token:  Stockholm
+11:29:31  A2 (copied) top next token:  Stockholm
+11:29:31  Top tokens match: True
+11:29:31  OLMo-2 logits dtype: torch.float32
+11:29:31  A2 logits dtype: torch.float32
+11:29:31  Max logit difference: 0.0000
+11:29:31  Outputs match (atol=1e-3): True
+11:29:31  Outputs match (atol=0.1): True

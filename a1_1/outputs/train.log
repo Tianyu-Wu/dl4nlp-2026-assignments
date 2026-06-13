@@ -1,0 +1,13 @@
+11:35:52  Loading tokenizer from outputs/model/a1_tokenizer
+11:35:52  Vocabulary size: 10000
+11:35:52  Loading dataset...
+11:35:53  HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/text/text.py "HTTP/1.1 200 OK"
+11:35:53  Train: 147059  Val: 17874
+11:35:53  Model parameters: 7,724,816
+11:41:59  Running evaluation...
+11:41:59  Next word predictions for 'She lives in San': ['francisco', 'diego', '<UNK>', 'antonio', 'juan']
+11:42:09  Perplexity on validation set: 65.36
+11:42:09  Nearest neighbors of 'sweden': [('2013', '0.3190'), ('climb', '0.3102'), ('napoleon', '0.3060'), ('whites', '0.2989'), ('awards', '0.2976')]
+11:42:09  Nearest neighbors of 'mary': [('episcopal', '0.3273'), ('woods', '0.3221'), ('judah', '0.2956'), ('celibacy', '0.2879'), ('speer', '0.2878')]
+11:42:09  Nearest neighbors of 'good': [('fred', '0.3295'), ('nicaragua', '0.3133'), ('tourism', '0.3006'), ('agreed', '0.2954'), ('seats', '0.2876')]
+11:42:09  Plotting PCA embeddings for: ['sweden', 'denmark', 'europe', 'africa', 'london', 'stockholm', 'large', 'small', 'great', 'black', '3', '7', '10', 'seven', 'three', 'ten', '1984', '2005', '2010']
