@@ -1,0 +1,378 @@
+Natural Language Processing
+
+Environmental cost of chatbots
+
+Marco Kuhlmann 
+Department of Computer and Information Science
+
+This work is licensed under a  
+Creative Commons Attribution 4.0 International License.
+
+The environmental cost of cloud-based AI
+
+• Like many other AI-based technologies, chatbots are typically 
+
+oﬀered as “ethereal” cloud services. 
+
+• However, training and using chatbots has a concrete and negative 
+
+impact on the environment. 
+
+energy, water, carbon emissions 
+
+• Many individuals ﬁnd it hard to connect their use of AI with 
+
+their personal climate goals.
+
+Electricity consumption
+
+Verma and Tan (2024)
+
+Estimated energy consumption of ChatGPT  
+when generating a -word email
+
+single person  
+once
+
+single person  
+once weekly for a year
+
+10% of Sweden’s workforce  
+once weekly for a year
+
+0.14 kWh
+
+7.5 kWh
+
+3 900 000 kWh
+
+powering 14 LED light bulbs  
+for one hour
+
+powering a family home  
+for 10 hours
+
+powering 650 family homes  
+for one year
+
+Water consumption
+
+Verma and Tan (2024)
+
+Estimated water consumption of ChatGPT  
+when generating a -word email
+
+single person  
+once
+
+single person  
+once weekly for a year
+
+10% of Sweden’s workforce  
+once weekly for a year
+
+519 ml
+
+27 l
+
+14,600,000 l
+
+1 bottle of water 
+
+1.4 water jugs 
+(as used in a water cooler)
+
+285 people’s water  
+consumption for one year
+
+LLM life cycle analysis
+
+Materials 
+extraction
+
+Materials  
+manufacturing
+
+Equipment  
+manufacturing
+
+Model  
+training
+
+Model  
+deployment
+
+Disposal/ 
+end-of-life
+
+• A complete assessment of the environmental cost of chatbot 
+
+technology over its full lifecycle is diﬃcult. 
+
+• Most data is available on equipment manufacturing, model 
+
+training, and model deployment.
+
+Luccioni et al. (2022)
+
+Training the BLOOM model
+
+Number of parameters
+
+176B
+
+Total training time
+
+118 days, 5 hours, 41 minutes
+
+Total GPU time
+
+1,082,990 hours
+
+Total energy used
+
+433,196 kWh
+
+Carbon emissions (incl. PUE)
+
+30 tonnes
+
+Luccioni et al. (2022)
+
+Carbon emissions during training
+
+)
+s
+n
+o
+t
+(
+
+s
+n
+o
+i
+s
+s
+i
+
+m
+e
+2
+O
+C
+
+600
+
+450
+
+300
+
+150
+
+0
+
+?
+
+GPT-3
+
+OPT
+
+BLOOM
+
+ChatGPT
+
+Luccioni et al. (2022)
+
+ 
+ 
+Source: Oﬃcial Microsoft Blog (2025-09-18)
+
+Top 5 largest data centres worldwide
+
+Name
+
+Location
+
+Size
+
+Power installed
+
+China Telecom –  
+Inner Mongolia
+
+Switch – The Citadel  
+(Tahoe Reno Campus)
+
+Harbin Data Centre  
+(China Mobile)
+
+Range International 
+Information Hub
+
+Switch – “SuperNAP” 
+(Las Vegas Core Campus)
+
+Hohhot, China
+
+994,000 m2
+
+150 MW
+
+Nevada, USA
+
+669,000 m2
+
+650 MW
+
+Harbin, China
+
+660,000 m2
+
+200 MW
+
+Langfang, China
+
+585,000 m2
+
+150 MW
+
+Nevada, USA
+
+325,000 m2
+
+495 MW
+
+Source: Datum (2025-08-20)
+
+Air cooling
+
+uses fans and air conditioning to move cool air in and hot air out
+
+Air cooling
+
+uses fans and air conditioning to move cool air in and hot air out
+
+Air cooling
+
+uses fans and air conditioning to move cool air in and hot air out
+
+Liquid cooling
+
+uses liquid to absorb the heat from the servers and carry it away
+
+Liquid cooling
+
+uses liquid to absorb the heat from the servers and carry it away
+
+Key performance indicators
+
+• Power Usage Eﬀectiveness (PUE) 
+
+is the ratio of the energy used by the data centre to the energy 
+delivered to the computing equipment 
+
+ISO standard 
+
+• Water Usage Eﬀectiveness (WUE) 
+
+is the ratio of the data centre’s water consumption (m3)  
+to the energy delived to the computing equipment (MWh)
+
+Resource eﬀectiveness of European data centres
+
+Country
+
+Power 
+installed
+
+Total energy 
+consumption
+
+Total water 
+consumption
+
+PUE  
+(Power)
+
+WUE  
+(Water)
+
+Sweden
+
+350.7 MW
+
+1.1 TWh
+
+43,465 m3
+
+1.14
+
+0.04
+
+Finland
+
+313.4 MW
+
+1.4 TWh
+
+7,591 m3
+
+1.16
+
+0.01
+
+Germany
+
+2.6 GW
+
+5.4 TWh
+
+5,870,093 m3
+
+1.40
+
+1.43
+
+EC Public Dashboard – 2024 Data
+
+ 
+Summary
+
+• Cloud-based technology is abstract for most users but has a 
+
+concrete and negative impact on the environment. 
+
+• For chatbots in particular, training and deployment requires 
+
+substantial amounts of electrical energy and water. 
+
+• ere is currently no comprehensive reporting on resource 
+
+consumption and environmental consequences.
+
+Interventions
+
+• Technical interventions that make AI models less resource-
+
+intensive, such as quantisation or distillation 
+
+• Behavioural interventions such as users choosing task-speciﬁc 
+
+models or tools not powered by AI where possible 
+
+• Organisational interventions such as opting for compute 
+
+solutions powered by renewable energy 
+
+• Policy interventions such as enforcing transparency regarding 
+
+the environmental cost of the technology
+
+[Google] has claimed that it’s been carbon neutral in its operations  
+since . […] But in its latest report, the company states: “Starting  
+in , we’re no longer maintaining operational carbon neutrality.”
+
+Rathi (2024)
+
+

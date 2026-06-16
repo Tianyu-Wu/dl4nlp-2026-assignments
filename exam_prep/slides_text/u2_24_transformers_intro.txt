@@ -1,0 +1,126 @@
+Machine Learning for Natural Language
+Processing
+Introduction to Transformers
+
+Richard Johansson
+
+richajo@chalmers.se
+
+the Transformer
+
+· the Transformer architecture (Vaswani et al., 2017)
+now dominates NLP research
+
+· it is a family of architectures!
+
+-20pt
+
+the Transformer: main idea
+
+· the Transformer uses attention for information
+flow: “Attention is all you need”
+· it was developed to mitigate drawbacks of RNNs
+· it was originally designed for machine translation,
+and the original design included two modules:
+
+· an encoder that “summarizes” an input sentence
+· a decoder that generates an output
+
+-20pt
+
+decoder only
+
+encoder only
+
+models P (Y )
+
+representation f (X)
+
+outputs a
+
+types of Transformers: high level
+
+encoder/decoder
+
+models P (Y |X)
+
+-20pt
+
+encoder only
+
+outputs a
+
+representation f (X)
+
+types of Transformers: high level
+
+encoder/decoder
+
+decoder only
+
+models P (Y |X)
+
+models P (Y )
+
+-20pt
+
+types of Transformers: high level
+
+encoder/decoder
+
+decoder only
+
+encoder only
+
+models P (Y |X)
+
+models P (Y )
+
+outputs a
+representation f (X)
+
+-20pt
+
+illustration of a Transformer encoder block
+
+-20pt
+
+illustration of a Transformer encoder block
+
+-20pt
+
+illustration of a Transformer encoder block
+
+-20pt
+
+illustration of a Transformer encoder block
+
+-20pt
+
+illustration of a Transformer encoder block
+
+-20pt
+
+illustration of a Transformer encoder block
+
+-20pt
+
+next
+
+Transformer language models: implementation, applications
+
+Later: representation models, translation models
+
+-20pt
+
+references
+
+J. Ba, J. Kiros, and G. Hinton. 2016. Layer normalization. arXiv:1607.06450.
+
+A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A. N. Gomez, L. Kaiser,
+
+and I. Polosukhin. 2017. Attention is all you need. In NIPS 30.
+
+-20pt
+
+

@@ -1,0 +1,181 @@
+Natural Language Processing
+
+Training LLMs
+
+Marco Kuhlmann  
+Department of Computer and Information Science
+
+This work is licensed under a  
+Creative Commons Attribution 4.0 International License.
+
+Gradient descent
+
+• Step :  Start with random values for the parameters 𝜽. 
+
+• Step :  Compute the gradient of the loss function for the current 
+
+parameter settings, ∇𝐿(𝜽). 
+
+• Step :  Update the parameters 𝜽 as follows:    𝜽 ≔ 𝜽 − 𝛼 ∇𝐿(𝜽) 
+
+e hyperparameter 𝛼 is the learning rate. 
+
+• Repeat step – until the loss is suﬃciently low.
+
+Gradient descent
+
+low loss
+
+high loss
+
+Stochastic gradient descent
+
+low loss
+
+high loss
+
+Unstable training
+
+Training deep neural networks is oen unstable in the initial phase: 
+
+• Parameters are initialised randomly, which means they are far 
+
+from the optimal solution. 
+
+• Gradients are computed using relatively small subsets of the data, 
+
+which causes a large variability between gradients.
+
+Adam optimiser
+
+• Adam (Adaptive Moment Estimation) is the most popular 
+
+optimisation algorithm for training language models. 
+
+• Adam smoothes out gradient estimates by averaging past 
+
+gradient directions and magnitudes. 
+
+•
+
+It maintains diﬀerent learning rates per parameter, which helps it 
+adapt to diﬀerent regions of the optimisation surface.
+
+large steps along the valley, small steps across the valley
+
+Gradient clipping
+
+• Excessively large gradients can cause gradient explosion and 
+
+training instability. 
+
+• Gradient clipping stabilises the training process by downscaling 
+
+gradients if they exceed a certain limit. 
+
+• Speciﬁcally, gradient clipping will rescale gradients if their total 
+
+norm exceeds the speciﬁed threshold.
+
+<latexit sha1_base64="Gw/oBEb0T/P19N6RZXIXKX3fsf8=">AAAFbnicjVRda9swFFU/snXZV7vBXsaYWCl0Iw5xWpL2IVDaUTZY1m7pF8QhyMpNIipbxpJLM+Mft5+xX7DX7nkvk2zTrk7KJrC5Ovfo6OpcW27AmVS12o+5+YXF0r37Sw/KDx89fvJ0eeXZiRRRSOGYCi7CM5dI4MyHY8UUh7MgBOK5HE7d8z2TP72AUDLhH6lJAD2PjHw2ZJQoDfWXu46CSxVLSrTCCA8JVSJMcAs7w5DQOMt65NLp+yL0kiR29GQ9g5VQhOMUr+Ai821S7i+v1qq1dODpwM6DVZSPw/7Kwm9nIGjkga8oJ1J27VqgejEJFaMckrITSQgIPScj6OrQJx7IXpy6kOA1jQzwUIT68RVO0b9XxMSTcuK5mukRNZbFnAFn5bqRGm71YuYHkQKfZhsNI46VwMZSPGAhUMUnOiA0ZLpWTMdE26e08eVb25jKZAD09lHMlpZUEw6tj52Diiv44GbaiyOfUTEAKy1Q60lQHmG+0eqW1zDe1fx9c+QWjt/hDnjMKCSVMsYd9g32gagoBGnSGsI4NqieWVvVzQo+CHTBhOfYVrrshqMplr1RZNl2gWZvWPZ2dXuKt13kaZJVZDXriSalzE9sdF3sEZwZ6HPkudpHU31b+EJq02CgJfigYyzSy3pxm/n6a8aHobj2R40zf/7lQaOCc+8ykbbpxRHzJxWc6puEhjq6sYHK3oUzNTIfp1X2SKBmqdxh8bTAVxhFnIT/oXHt/7RIJ3LH/6NgOtOsz1J4z2RQYDfr1l3MmXuZ/t70qZ1/yByUcwG05ZjfcqivC7t4OUwHJ/Wq3ag2vmyu7uzmF8cSeoneoHVkoybaQR/QITpGFH1HP9EV+rV4VXpRelV6nVHn5/I1z9GtUVr/A9prsAM=</latexit>
+
+scaling factor
+
+max_norm
+
+max
+
+total norm
+
+max_norm
+
+=
+
+(
+
+,
+
+)
+
+Learning rate scheduling
+
+• Choosing the right learning rate is crucial, but diﬀerent training 
+
+stages may require diﬀerent learning rates. 
+
+• A learning rate scheduler is a strategy that adjusts the learning 
+
+rate during training. 
+
+change aer a ﬁxed number of steps; exponential decay; cyclic regime …
+
+Learning rate scheduling
+
+Phase 2:  
+cosine decay
+
+Phase 1:  
+linear warm-up
+
+Phase 3:  
+plateau
+
+Gradient accumulation
+
+• Larger batch sizes yield better estimates of the true gradient of 
+
+the loss function but require more memory. 
+
+• Gradient accumulation breaks up the gradient computation 
+
+across several smaller chunks. 
+
+• We compute the gradient for each micro-batch, add them up, and 
+then do a single weight update with the accumulated gradient.
+
+Gradient accumulation
+
+optimizer.zero_grad() 
+
+n_elements = 0 
+
+for microstep in range(n_microsteps): 
+
+  x, y = next(data_loader) 
+
+  loss = F.cross_entropy(model(x), y, reduction="sum") 
+
+  loss.backward() 
+
+  n_elements += len(x) 
+
+loss = loss / n_elements 
+
+optimizer.step()
+
+default is “mean”, which divides  
+by the number of elements in each mico-batch
+
+Weight decay
+
+• Large weights can lead to overﬁtting and prevent generalisation. 
+
+• Weight decay is a regularisation technique that penalises large 
+weights by adding a scaled L norm of the weights to the loss: 
+
+<latexit sha1_base64="RWaZ8qKsvvJqhfk2ztP+/B/EjUM=">AAAFXnicjVRbb9MwFPYuHaMwtsELEi8W06QBTdV0U7s9VJo2NIFY2aC7SU2pHOe0teZcFDsTJcuP4tcg3sbv4AU7jXZJOzFLiU6+8/nz8Xcc2wFnQlYqv6emZ2YLc4/mHxefPF14tri0/PxE+FFI4Zj63A/PbCKAMw+OJZMczoIQiGtzOLXPd3X+9AJCwXzvSA4D6Lik77Eeo0QqqLv0ab8bWxK+yziEfpKsWRdAFTAASZI3uIH3c8g7bHGl7hBsXd7OWJffqt2llUq5kg48HphZsIKycdhdnvlrOT6NXPAk5USItlkJZCcmoWSUQ1K0IgEBoeekD20VesQF0YnTXSd4VSEO7vmhejyJU/T2jJi4QgxdWzFdIgcin9PgpFw7kr3NTsy8IJLg0dFCvYhj6WNtIXZYCFTyoQoIDZmqFdMBCQmVyujinWV0ZSIAencreklDyCGHxsfWQcn2uXPz2Ykjj1HfASMtUOkJkC5hntZqF1cx3lH8Pb3lBo7f4ha4TCskpSLGLfYD9oDIKASh0wrCONao+jI2yxslfBCoggnPsM102g1HUQxzPc8yzRzNXDfMrfLWGG8rz1MkI8+qVxNFSpn7rH9d7BGcaehz5NrKR1190/d8oUwDR0lwp6UtUtM6cZN56vTiw9C/9kcORv78z4NaCWfejUSauhdHzBuWcKqvEwpqqcYGcvTO7ak28nFcZZcEcpLKPRaPC3yFfsRJ+ACNa//HRVqRPXiIgu5MvTpJ4T0TQY5drxr3MSeupft706dmdpA5SH1nNCz9W/bUdWHmL4fx4KRaNmvl2peNle2d7OKYR6/Qa7SGTFRH2+gDOkTHiKKf6Be6Qn9mrwpzhYXC4og6PZXNeYHujMLLfzfvp1A=</latexit>
+
+reg
+
+2
+
+•
+
+It is common to not weight-decay biases and other one-
+dimensional tensors, such as those in layer norms.
+
+(𝜽) = 𝐿(𝜽) + 𝜆‖𝜽‖
+
+𝐿
+
+

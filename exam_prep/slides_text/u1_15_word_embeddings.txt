@@ -1,0 +1,584 @@
+Natural Language Processing
+
+Word embeddings
+
+Marco Kuhlmann 
+Department of Computer and Information Science
+
+This work is licensed under a  
+Creative Commons Attribution 4.0 International License.
+
+One-hot vectors
+
+• To process words using neural networks, we need to represent 
+
+them as vectors of numerical values. 
+
+• e classical way to do this is to use one-hot vectors – vectors in 
+
+which all components but one are zero.
+
+# words
+
+# words
+
+# words
+
+Kim
+
+hates
+
+broccoli
+
+Word embeddings
+
+Compared to one-hot vectors, word embeddings 
+
+•
+
+•
+
+•
+
+are shorter but dense 
+
+support a useful notion of similarity 
+
+can be learned from data
+
+# dimensions
+
+# dimensions
+
+# dimensions
+
+Kim
+
+hates
+
+broccoli
+
+word
+
+similarity
+
+bicycle
+
+bicycles
+
+racing
+
+.
+
+.
+
+.
+
+motorcycles
+
+.
+
+sport
+
+.
+
+streets
+
+roads
+
+parks
+
+bike
+
+swimming
+
+beach
+
+skiing
+
+bicycle
+
+bicycles
+
+sports
+
+sport
+
+touring
+
+cars
+
+racing
+
+ride
+
+riding
+
+wheels
+
+motorcycles
+
+gear
+
+motorcycle
+
+P
+A
+M
+U
+
+,
+s
+r
+u
+o
+b
+h
+g
+e
+n
+0
+2
+
+i
+
+,
+
+d
+0
+0
+2
+
+,
+
+k
+0
+1
+c
+e
+v
+2
+d
+r
+o
+w
+
+Source
+
+ 
+ 
+ 
+ 
+ 
+You shall know a word by the company it keeps
+
+What do the following sentences tell us about Garrotxa? 
+
+• Garrotxa is made from milk. 
+
+• Garrotxa pairs well with crusty country bread. 
+
+• Garrotxa is aged in caves to enhance mould development.
+
+Sentences taken from the English Wikipedia
+
+The distributional hypothesis
+
+• e distributional hypothesis states that words with similar 
+
+distributions have similar meanings. 
+
+with similar distributions = are used and occur in the same contexts 
+
+• is suggests that we can learn word representations from  
+
+co-occurrence statistics. 
+
+similar co-occurrence distributions = similar meanings
+
+Co-occurrence matrix
+
+cheese
+
+bread
+
+goat
+
+sheep
+
+as olives cheese or bread
+
+cheese
+
+bread
+
+goat
+
+sheep
+
+Co-occurrence matrix
+
+cheese
+
+bread
+
+goat
+
+sheep
+
+as olives cheese or bread
+
+cheese
+
+1
+
+of sheep cheese and milk
+
+bread
+
+goat
+
+sheep
+
+Co-occurrence matrix
+
+cheese
+
+bread
+
+goat
+
+sheep
+
+as olives cheese or bread
+
+cheese
+
+1
+
+1
+
+of sheep cheese and milk
+
+bread
+
+goat
+
+sheep
+
+goat milk cheese can be
+
+Co-occurrence matrix
+
+cheese
+
+bread
+
+goat
+
+sheep
+
+as olives cheese or bread
+
+cheese
+
+1
+
+1
+
+1
+
+of sheep cheese and milk
+
+bread
+
+goat
+
+sheep
+
+goat milk cheese can be
+
+bread and cheese for breakfast
+
+Co-occurrence matrix
+
+cheese
+
+bread
+
+goat
+
+sheep
+
+as olives cheese or bread
+
+cheese
+
+2
+
+1
+
+1
+
+of sheep cheese and milk
+
+bread
+
+goat
+
+sheep
+
+goat milk cheese can be
+
+bread and cheese for breakfast
+
+macaroni and cheese with bread
+
+Co-occurrence matrix
+
+cheese
+
+bread
+
+goat
+
+sheep
+
+as olives cheese or bread
+
+cheese
+
+3
+
+1
+
+1
+
+of sheep cheese and milk
+
+bread
+
+goat
+
+sheep
+
+goat milk cheese can be
+
+bread and cheese for breakfast
+
+macaroni and cheese with bread
+
+Co-occurrence matrix
+
+cheese
+
+bread
+
+goat
+
+sheep
+
+cheese
+
+14
+
+bread
+
+goat
+
+sheep
+
+7
+
+5
+
+1
+
+7
+
+12
+
+0
+
+0
+
+5
+
+0
+
+8
+
+12
+
+1
+
+0
+
+12
+
+2
+
+word vector  
+for cheese
+
+Vector similarity = meaning similarity
+
+sheep
+
+goat
+
+bread
+
+cheese
+
+cheese
+
+bread
+
+goat
+
+sheep
+
+cheese
+
+1.00
+
+0.80
+
+0.49
+
+0.38
+
+bread
+
+0.80
+
+1.00
+
+0.17
+
+0.04
+
+goat
+
+0.49
+
+0.17
+
+1.00
+
+0.67
+
+sheep
+
+0.38
+
+0.04
+
+0.67
+
+1.00
+
+vector space (PCA)
+
+cosine similarities
+
+<latexit sha1_base64="luaHtBpHuUDkVV9KJGrvojyDNGo=">AAAGGXicjVTBbttGEGXSqE3YtHXaYy+LKAaSQhJEWrbkAAYMpAhaoG6cyE4caFVjuRxZC5O7LHeZWF3zS/ID/Ysgt6LXnvoBvTa/kFmKsWPZBkyAwuzMmzejN8uJskRo0+3+e+36Zzcan39x85b/5e2vvv5m6c63z7Uqcg67XCUq34uYhkRI2DXCJLCX5cDSKIEX0eEjF3/xCnItlNwxswzGKTuQYiI4M+jaX3pJDRwZy5Uu79NXwO1R2SKVMSsfkA1CJznjto785lOTM6kzpeEjqLT0uA6jcVx76XG5v9TsdlZ64SAckG6nF/TDtVVnrK/2ewMSdLrV0/TqZ3v/zo0/aax4kYI0PGFaj4JuZsaW5UbwBEqfFhoyxg/ZAYzQlCwFPbaVBiVZRk9MJirHVxpSeT/NsCzVepZGiEyZmerFmHNeFBsVZjIYWyGzwoDk80KTIiFGEScoiUUO3CQzNBjPBfZK+JShagZl9336DH4vELJdl3Ld6Qx46Z+p4uq2tZklsPHz8EkrUkl8ehzbQgquYmhXXWKmBpMyIR3ZyCdkKP6Ax8BMkYPGoVl0EWKdF0/tQafXIk8y7IwltW9Qts5gENIOVhZRQbAAC1bawXpn/RxufRGHoPYiqh+WCKqQv4iDk2Z3YM+5fi3SCAVz3W8pqTQKAzFSJPHQyYBpY7slJF5asp2rEw3M9GoarLXIY3cvNsicZMvpvSPkrEUqfhdA1xAnmJn578J/WpvreJ7lEcvMRSyXSHye4BkcFAnLr8Bxov95kmERTa/C4CbTDy9i+FHobAHdD9uXIS+s5eZ7Oqet+rKm7BDnkoDBL8KnEl5zlaZMxj/Y03VS2mVMttRNNGMVlm6eRG1ZLvvlQu5puByF4yp/mTSDh8RxkOrjmbvCh6SQbj3gkeZMaIjUkaUxZNifvUfTTTNtBlRI7A+v6715rXnXykyxaZ9iR261bVC3Qya42z4uMHK58TzsBKud7tNec3NQb7mb3vfeXe++F3h9b9P7ydv2dj3uvfX+8/733jfeNN41/mr8PYdev1bnfOedeRr/fACA1vAl</latexit>
+
+(cid:68)(cid:80)(cid:84)
+
+(cid:9)(cid:2637)(cid:13) (cid:2638)(cid:10) (cid:30)
+
+(cid:1467)
+(cid:2637)
+
+(cid:2638)
+(cid:1112)(cid:2637)(cid:1112)(cid:1112)(cid:2638)(cid:1112)
+
+Learning word embeddings
+
+• Count-based methods:  Matrix factorisation 
+
+Minimise the diﬀerence between the co-occurrence matrix and 
+an approximate reconstruction of it from word embeddings. 
+
+• Prediction-based methods:  Neural networks 
+
+Maximise the likelihood of a corpus under a probability model 
+that is conditioned on the word embeddings.
+
+Two diﬀerent perspectives on word embeddings
+
+• Count-based approach 
+
+similar embeddings ⇒ the corresponding  
+words have similar distributions 
+
+pizza
+sushi falafel
+
+rock
+funk
+
+jazz
+
+laptop
+touchpad
+
+• Prediction-based approach 
+
+neg
+
+similar embeddings ⇒ the corresponding  
+words behave similarly in learning tasks
+
+pos
+
+Evaluation of word embeddings
+
+Eisenstein § 14.6
+
+•
+
+visualisation of the embedding space 
+
+Requires dimensionality reduction (PCA, t-SNE, UMAP) 
+
+•
+
+computing relative similarities 
+
+cosine similarity, Euclidean distance 
+
+•
+
+similarity benchmarks 
+
+pizza
+sushi falafel
+
+jazz
+
+rock
+funk
+
+laptop
+touchpad
+
+Example: odd one out – breakfast lunch dinner surgery 
+
+woman
+
+•
+
+analogy benchmarks 
+
+Example: woman is to man as sister is to ?
+
+sister
+
+man
+
+brother
+
+

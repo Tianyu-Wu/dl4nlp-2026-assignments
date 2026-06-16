@@ -1,0 +1,342 @@
+Natural Language Processing
+
+Introduction to LLM development
+
+Marco Kuhlmann  
+Department of Computer and Information Science
+
+This work is licensed under a  
+Creative Commons Attribution 4.0 International License.
+
+LLM
+
+EvaluationSystemsDataTrainingArchitectureLLM
+
+EvaluationSystemsDataTrainingArchitectureDecoder-based language models
+
+GPT
+
+Gemini
+
+Llama
+
+DeepSeek
+
+Latest model  
+(release)
+
+OpenAI o  
+(-)
+
+Gemini .  
+(-)
+
+Llama .  
+(–)
+
+DeepSeek-R  
+(-)
+
+Parameter size
+
+undisclosed
+
+undisclosed
+
+B
+
+B
+
+Context size
+
+K
+
+M
+
+K
+
+K
+
+License
+
+Proprietary
+
+Proprietary
+
+Open-source
+
+Open-source
+
+Mixture of experts
+
+• e Mixture of Experts 
+architecture dynamically 
+selects sub-models. 
+
+• For each input, it activates 
+only a fraction of the 
+model’s total parameters. 
+
+• A learnable router chooses 
+which experts to activate.
+
+output
+
+sum
+
+M1 = 0.3, 
+M2 = 0.6, 
+M3 = 0.1
+
+M1
+
+M2
+
+M3
+
+Router
+
+input
+
+LLM
+
+EvaluationSystemsDataTrainingArchitectureunsupervised  
+pre-training
+
+instruction  
+ﬁne-tuning
+
+reward  
+modelling
+
+reinforcement  
+learning
+
+data
+
+raw text from  
+the Internet 
+trillions of words 
+low quality,  
+high quantity
+
+ideal  
+dialogues 
+10k–100k 
+low quantity,  
+high quality
+
+annotated  
+dialogues 
+100k–1M 
+low quantity,  
+high quality
+
+generated  
+dialogues 
+10k–100k 
+low quantity,  
+high quality
+
+algorithm
+
+language  
+modelling 
+predict the  
+next word
+
+language  
+modelling 
+predict the  
+next word
+
+binary  
+classiﬁcation 
+reward consistent 
+with preferences?
+
+reinforcement 
+learning 
+generate text for 
+maximal reward
+
+resources
+
+1000s of GPUs 
+several months of 
+training time 
+GPT, Llama
+
+language model
+
+1–100 GPUs 
+several days of 
+training time 
+
+1–100 GPUs 
+several days of 
+training time
+
+1–100 GPUer 
+several days of  
+training time 
+ChatGPT, Claude
+
+assistant model
+
+Source: AdapterHub
+
+LLM
+
+EvaluationSystemsDataTrainingArchitectureSource: Common Crawl
+
+LLM
+
+EvaluationSystemsDataTrainingArchitectureI
+
+A
+D
+V
+N
+
+I
+
+:
+e
+c
+r
+u
+o
+S
+
+Datasheet
+
+NVIDIA H200 Tensor Core GPU
+Supercharging AI and HPC workloads.
+
+Key Features
+
+ > 141GB of HBM3e GPU memory
+
+ > 4.8TB/s of memory bandwidth
+
+ > 4 petaFLOPS of FP8 performance
+
+ > 2X LLM inference performance
+
+ > 110X HPC performance
+
+Higher Performance With Larger, Faster Memory
+
+The NVIDIA H200 Tensor Core GPU supercharges generative AI and high-
+performance computing (HPC) workloads with game-changing performance 
+
+and memory capabilities. 
+
+Based on the NVIDIA Hopper™ architecture, the NVIDIA H200 is the first GPU to 
+offer 141 gigabytes (GB) of HBM3e memory at 4.8 terabytes per second (TB/s)—
+that’s nearly double the capacity of the NVIDIA H100 Tensor Core GPU with 
+
+1.4X more memory bandwidth. The H200’s larger and faster memory accelerates 
+
+generative AI and large language models, while advancing scientific computing for 
+
+HPC workloads with better energy efficiency and lower total cost of ownership. 
+
+Unlock Insights With High-Performance LLM Inference
+
+In the ever-evolving landscape of AI, businesses rely on large language models to 
+
+address a diverse range of inference needs. An AI inference accelerator must deliver the 
+
+highest throughput at the lowest TCO when deployed at scale for a massive user base. 
+
+The H200 doubles inference performance compared to H100 GPUs when handling 
+
+large language models such as Llama2 70B.
+
+.
+
+Preliminary specifications. May be subject to change.
+
+Llama2 13B: ISL 128, OSL 2K | Throughput | H100 SXM 1x GPU BS 64 | H200 SXM 1x GPU BS 128
+
+GPT-3 175B: ISL 80, OSL 200 | x8 H100 SXM GPUs BS 64 | x8 H200 SXM GPUs BS 128
+
+Llama2 70B: ISL 2K, OSL 128 | Throughput | H100 SXM 1x GPU BS 8 | H200 SXM 1x GPU BS 32.
+
+NVIDIA H200 Tensor Core GPU | Datasheet | 1
+
+ 
+.
+
+g
+r
+o
+h
+t
+r
+a
+e
+:
+e
+c
+r
+u
+o
+S
+
+ 
+LLM
+
+EvaluationSystemsDataTrainingArchitectureBenchmarks
+
+Benchmark
+
+Release year
+
+Tasks
+
+Size
+
+MMLU
+
+MATH
+
+
+
+
+
+BIG-Bench
+
+
+
+SWE-bench
+
+
+
+general  
+knowledge
+
+mathematical 
+reasoning
+
+reasoning, 
+extrapolation
+
+coding,  
+reasoning
+
+, questions
+
+, problems
+
+ tasks
+
+, GitHub issues
+
+Source: Chatbot Arena LLM Leaderboard
+
+LLM
+
+EvaluationSystemsDataTrainingArchitecture

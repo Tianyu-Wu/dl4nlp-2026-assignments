@@ -1,0 +1,321 @@
+Natural Language Processing
+
+Introduction to tokenisation
+
+Marco Kuhlmann 
+Department of Computer and Information Science
+
+This work is licensed under a  
+Creative Commons Attribution 4.0 International License.
+
+What is tokenisation?
+
+• Tokenisation is the task of breaking running text into smaller 
+
+segments such as words or characters. 
+
+• Tokenisation simpliﬁes natural language processing by reducing 
+
+unstructured text to more useful units. 
+
+• Tokenisation is the ﬁrst step in mapping text to a numerical 
+
+representation that computers can process.
+
+Words provide important signals
+
+e gorgeously elaborate 
+continuation of “e Lord of 
+the Rings” trilogy is so huge 
+that a column of words 
+cannot adequately describe 
+co-writer/director Peter 
+Jackson’s expanded vision of 
+J.R.R. Tolkien’s Middle-earth.
+
+… is a sour little movie at its 
+core; an exploration of the 
+emptiness that underlay the 
+relentless gaiety of the ’s, 
+as if to stop would hasten the 
+economic and global political 
+turmoil that was to come. 
+
+positive
+
+negative
+
+combine
+
+decode
+
+embed
+
+encode
+
+tokenise
+
+rule them all
+
+str
+
+rule
+
+them
+
+all
+
+list[str]
+
+28993
+
+31365
+
+15169
+
+Tensor[int]
+
+neural language model
+
+−0.82, 0.37
+
+0.56, 0.53
+
+0.29, −0.60
+
+Tensor[ﬂoat]
+
+25874
+
+28830
+
+31543
+
+Tensor[int]
+
+one
+
+ring
+
+to
+
+list[str]
+
+one ring to
+
+str
+
+Whitespace tokenisation
+
+# Tokenise text by splitting at whitespace 
+
+def tokenize(text: str) -> list[str]: 
+
+    return text.split() 
+
+# Create a vocabulary 
+
+vocab: set[str] = set(tokenize(text)) 
+
+# {'cannot', 'huge', 'column', 'that', 'is', …} 
+
+# Create a string-to-ID mapping 
+
+stoid: dict[str, int] = {s: i for i, s in enumerate(vocab)} 
+
+# {'cannot': 0, 'huge': 1, 'column': 2, 'that': 3, 'is': 4, …}
+
+Whitespace tokenisation
+
+Regex-based tokenisation
+
+e gorgeously elaborate 
+continuation of “e Lord of the 
+Rings” trilogy is so huge that a 
+column of words  
+cannot adequately describe  
+co-writer/director Peter 
+Jackson’s expanded vision of 
+J.R.R. Tolkien’s Middle-earth.
+
+e gorgeously elaborate 
+continuation of “ e Lord of 
+the Rings ” trilogy is so huge 
+that a column of words  
+cannot adequately describe  
+co-writer / director Peter 
+Jackson ’s expanded vision of  
+J. R. R. Tolkien ’s Middle-earth .
+
+re.findall(r"[A-Za-z]\.|\w+(?:-\w+)*|'\w+|[^\w\s]+", text)
+
+single letters  
+followed by a period
+
+whole words, incl. 
+hyphenated words
+
+genitives ('s) and  
+contractions ('ve)
+
+punctuation, other  
+non-word characters
+
+Text normalisation
+
+• Text normalisation refers to the process of converting text into a 
+
+more useful, standard form. 
+
+• Standard techniques include case normalisation, harmonisation 
+of spelling variants, lemmatisation, and removing punctuation. 
+
+Harmonisation: color → colour. Lemmatization: runs, ran, running → run 
+
+• Text normalisation was once a critical step in NLP tasks but is no 
+
+longer as widely used today.
+
+The challenge of unknown words – Heaps’ law
+
+)
+s
+n
+e
+k
+o
+t
+
+f
+o
+s
+d
+n
+a
+s
+u
+o
+h
+t
+(
+e
+z
+i
+s
+y
+r
+a
+u
+b
+a
+c
+o
+V
+
+l
+
+30
+
+25
+
+20
+
+15
+
+10
+
+5
+
+0
+
+0.00
+
+0.25
+
+0.50
+
+t
+e
+s
+a
+t
+a
+d
+2
+-
+t
+x
+e
+T
+i
+k
+i
+W
+
+New text will always  
+contain unknown words.
+
+Text length (millions of tokens)
+1.00
+
+1.25
+
+0.75
+
+1.50
+
+1.75
+
+2.00
+
+ 
+Dealing with unknown words
+
+• Step :  Build the vocabulary as usual. 
+
+oen combined with a frequency threshold 
+
+By Ena Music – Own work, CC BY-SA 4.0, Link
+
+• Step :  Augment the vocabulary with a special token, such as 
+
+[], to represent unknown words. 
+
+• Step :  When processing new text, replace any out-of-
+vocabulary () word with the special [] token. 
+
+e quokka is adorable. → e [] is adorable. (Assuming quokka is .)
+
+But what is a word, anyway?
+
+ere are many languages that do not adhere to the same concept of 
+a “word” as English and Swedish. 
+
+• Chinese is written without spaces between characters. 
+
+Identifying word boundaries is challenging. 
+
+姚明进⼊总决赛 – “Yao Ming reaches the ﬁnals.” 
+
+•
+
+Inuktitut allows entire sentences to be expressed as single words 
+by combining multiple morphemes. 
+
+tusaatsiarunnanngittualuujunga – “I cannot hear very well.”
+
+Target representations for tokenisation
+
+• Option :  Tokenise into words 
+
+But: concept of “word” not universal; unknown words 
+
+• Option :  Tokenise into individual characters 
+
+But: may be too small a unit for learning 
+
+• Option :  Tokenise into subwords 
+
+Intuition: words are composed of morphemes
+
+

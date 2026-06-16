@@ -1,0 +1,315 @@
+Machine Learning for Natural Language
+Processing
+Representing positions in Transformers
+
+Richard Johansson
+
+richajo@chalmers.se
+
+The Transformer architecture
+
+The representation of positions varies
+between Transformer implementations
+
+One of the main differences between
+earlier and modern Transformers
+
+-20pt
+
+Symmetries in the Transformer
+
+-20pt
+
+Symmetries in the Transformer
+
+-20pt
+
+Symmetries in the Transformer
+
+-20pt
+
+Positions in early Transformers
+
+Early Transformers added absolute
+positional encodings (or positional
+embeddings) at the bottom layer
+
+-20pt
+
+Original Transformer: Sinusoidal embeddings
+
+The Attention is all you need paper (Vaswani et al., 2017) used a
+deterministic approach based on trigonometric functions
+
+(
+PE2i(p) = sin
+
+p · 10000− 2i
+
+d
+
+)
+
+(
+PE2i+1(p) = cos
+
+p · 10000− 2i
+
+d
+
+)
+
+-20pt
+
+Learned position embeddings
+
+GPT-1/2/3 (Radford et al., 2018) and
+BERT (Devlin et al., 2019) used learned
+position embeddings
+
+One embedding for every unique position
+(up to max length)
+
+-20pt
+
+Fixed or learned: pros and cons
+
+Fixed sinusoidal: nothing to learn, model
+may (theoretically) learn to extrapolate to
+longer sequences
+
+Learned: easy to code, works well in
+practice, but does not extrapolate
+
+-20pt
+
+Positions in modern Transformers
+
+No token-level position embeddings:
+instead, the attention module takes
+position into account
+
+Position representations are relative
+
+-20pt
+
+Rotary Position Embedding (RoPE, Su et al., 2021)
+
+-20pt
+
+It applies rotation matrices where the rotation
+
+angle depends on the position
+
+In the 2-dimensional case:
+
+(
+
+) (
+
+)
+
+cos mθ − sin mθ
+
+sin mθ
+
+cos mθ
+
+x1
+
+x2
+
+RoPE(x, m) =
+
+RoPE key ideas
+
+Recall: Attention heads compute key, query, and
+value representations
+
+RoPE operates on the key and query vectors in
+attention
+
+-20pt
+
+RoPE key ideas
+
+Recall: Attention heads compute key, query, and
+value representations
+
+RoPE operates on the key and query vectors in
+attention
+
+It applies rotation matrices where the rotation
+angle depends on the position
+
+In the 2-dimensional case:
+
+(
+
+cos mθ − sin mθ
+cos mθ
+sin mθ
+
+) (
+
+)
+
+x1
+x2
+
+RoPE(x, m) =
+
+-20pt
+
+RoPE: more mathematical details
+
+In the d-dimensional case:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cos mθ1 − sin mθ1
+cos mθ1
+sin mθ1
+0
+0
+0
+0
+...
+...
+0
+0
+0
+0
+
+0
+0
+
+0
+0
+
+cos mθ2 − sin mθ2
+cos mθ2
+sin mθ2
+...
+...
+0
+0
+0
+0
+
+· · ·
+· · ·
+· · ·
+· · ·
+. . .
+· · ·
+· · ·
+
+0
+0
+0
+0
+...
+
+cos mθd/2 − sin mθd/2
+cos mθd/2
+sin mθd/2
+
+0
+0
+0
+0
+...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Because of the rotations, attention between positions m and n
+depends on m − n: the relative position
+
+q⊤
+mkn = (Rd
+
+Θ,mWqxm)⊤(Rd
+
+Θ,nWkxn) = x⊤
+
+mW ⊤
+
+q Rd
+
+Θ,m−nWkxn
+
+-20pt
+
+The ALiBi method (Press et al., 2022)
+
+-20pt
+
+For decoder models, do we need positions?
+
+-20pt
+
+Takeaways and further notes
+
+Transformers differ in their representation of positions
+
+As of 2025, RoPE is the dominant method: used by Llama, Qwen,
+Olmo, gpt-oss, DeepSeek, …
+
+Later, we will discuss how to process very long sequences
+
+Side note: all methods described here have 2D counterparts
+
+-20pt
+
+References
+
+J. Devlin, M.-W. Chang, K. Lee, and K. Toutanova. 2019. BERT: Pre-training of deep
+
+bidirectional transformers for language understanding. In NAACL.
+
+A. Haviv, O. Ram, O. Press, P. Izsak, and O. Levy. 2022. Transformer language
+models without positional encodings still learn positional information. In
+EMNLP Findings.
+
+O. Press, N. A. Smith, and M. Lewis. 2022. Train short, test long: Attention with
+
+linear biases enables input length extrapolation. In ICLR.
+
+A. Radford, K. Narasimhan, T. Salimans, and I. Sutskever. 2018. Improving
+
+language understanding by generative pre-training. OpenAI blog .
+
+J. Su, Y. Lu, S. Pan, A. Murtadha, B. Wen, and Y. Liu. 2021. Roformer: Enhanced
+
+transformer with rotary position embedding. arXiv preprint arXiv:2104.09864 .
+
+A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A. N. Gomez, L. Kaiser,
+
+and I. Polosukhin. 2017. Attention is all you need. In NIPS 30.
+
+-20pt
+
+

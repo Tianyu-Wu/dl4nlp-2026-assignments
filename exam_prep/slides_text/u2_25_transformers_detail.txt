@@ -1,0 +1,307 @@
+Machine Learning for Natural Language
+Processing
+The Transformer Model in Detail
+
+Richard Johansson
+
+richajo@chalmers.se
+
+-20pt
+
+-20pt
+
+types of Transformers: high level
+
+encoder/decoder:
+(translator)
+
+decoder only:
+(GPT-style)
+
+encoder only:
+(BERT-style)
+
+-20pt
+
+high-level overview of the Transformer encoder
+
+-20pt
+
+bottom-level token representations
+
+-20pt
+
+bottom-level token representations
+
+-20pt
+
+· Vaswani et al. (2017) used a sine-based
+
+function to represent positions
+
+· recent Transformers typically use
+
+learned position representations
+
+· NB: this is the only place where
+
+position is taken into account
+
+bottom-level token representations
+
+-20pt
+
+bottom-level token representations
+
+· Vaswani et al. (2017) used a sine-based
+function to represent positions
+· recent Transformers typically use
+learned position representations
+· NB: this is the only place where
+position is taken into account
+
+-20pt
+
+transformer encoder block: overview
+
+-20pt
+
+· finally, the “summary” is computed as a weighted mean:
+
+attention =
+
+αihi
+
+n∑
+
+i=1
+
+attention models: recap
+
+· first, compute an “energy” ei for each position hi
+· for the attention weights, we apply the softmax:
+
+αi =
+
+∑
+
+exp ei
+n
+j=1 exp ej
+
+-20pt
+
+attention models: recap
+
+· first, compute an “energy” ei for each position hi
+· for the attention weights, we apply the softmax:
+
+αi =
+
+∑
+
+exp ei
+n
+j=1 exp ej
+
+· finally, the “summary” is computed as a weighted mean:
+
+n∑
+
+attention =
+
+αihi
+
+i=1
+
+-20pt
+
+attention as a soft lookup memory
+
+attention can be thought of as a mapping from a query q and a set
+of key–value pairs kj, vj to an output
+
+an attention weight αj can be seen as an affinity between q and kj
+
+the output is the weighted mean of the values:
+∑
+
+attention =
+
+αjvj = αV
+
+j
+
+-20pt
+
+Transformer attention: computing attention weights
+
+scaled dot product attention:
+
+eij =
+
+qi · kj√
+d
+
+-20pt
+
+Transformer attention: computing attention weights
+
+scaled dot product attention:
+
+eij =
+
+qi · kj√
+d
+
+-20pt
+
+Transformer attention: computing attention weights
+
+scaled dot product attention:
+
+eij =
+
+qi · kj√
+d
+
+-20pt
+
+Transformer attention: computing attention weights
+
+scaled dot product attention:
+
+eij =
+
+qi · kj√
+d
+
+-20pt
+
+Transformer attention: computing attention weights
+
+scaled dot product attention:
+
+eij =
+
+qi · kj√
+d
+
+-20pt
+
+Transformer attention: computing the weighted means
+
+compute value representations V = W V X
+
+the attention output at position i is the weighted mean:
+
+ai = αiV
+
+-20pt
+
+Transformer attention: computing the weighted means
+
+compute value representations V = W V X
+
+the attention output at position i is the weighted mean:
+
+ai = αiV
+
+-20pt
+
+Transformer attention: computing the weighted means
+
+compute value representations V = W V X
+
+the attention output at position i is the weighted mean:
+
+ai = αiV
+
+-20pt
+
+multi-head attention
+
+-20pt
+
+multi-head attention
+
+-20pt
+
+the rest of the encoder block
+
+a feedforward layer is applied after MHA: it consists
+of a linear layer plus ReLU activation
+
+residual connections (He et al., 2016) and layer
+normalization (Ba et al., 2016) are used to stabilize
+training of deep models
+
+-20pt
+
+recap
+
+encoder only:
+(BERT-style)
+
+decoder only:
+(GPT-style)
+
+-20pt
+
+GPT-style decoder-only Transformer
+
+-20pt
+
+GPT-style decoder-only Transformer
+
+-20pt
+
+-20pt
+
+a decoder block in an encoder/decoder Transformer
+
+-20pt
+
+variations of Transformers
+
+· Transformers are a family of models
+· encoder/decoder or just encoder or decoder?
+· how to deal with positions?
+
+· hard-coded position encoding? (Vaswani et al., 2017)
+· learned position embedding? (Devlin et al., 2019)
+· relative position embedding? (Shaw et al., 2018)
+· position in lowest layer or in all layers?
+· layer normalization, other small details…
+
+-20pt
+
+reading
+
+The Illustrated Transformer
+
+-20pt
+
+references
+
+J. Ba, J. Kiros, and G. Hinton. 2016. Layer normalization. arXiv:1607.06450.
+
+J. Devlin, M.-W. Chang, K. Lee, and K. Toutanova. 2019. BERT: Pre-training of deep
+
+bidirectional transformers for language understanding. In NAACL.
+
+K. He, X. Zhang, S. Ren, and J. Sun. 2016. Deep residual learning for image
+
+recognition. In CVPR.
+
+P. Shaw, J. Uszkoreit, and A. Vaswani. 2018. Self-attention with relative position
+
+representations. In NAACL.
+
+A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A. N. Gomez, L. Kaiser,
+
+and I. Polosukhin. 2017. Attention is all you need. In NIPS 30.
+
+-20pt
+
+

@@ -1,0 +1,256 @@
+Machine Learning for Natural Language
+Processing
+Transformer Representation Models
+
+Richard Johansson
+
+richajo@chalmers.se
+
+Document and word representations
+
+-20pt
+
+Whatagreattoasterrepresentation!documentWhatagreattoasterrepresentation!wordTransfer learning: Pre-training and fine-tuning
+
+-20pt
+
+Transfer learning: Pre-training and fine-tuning
+
+-20pt
+
+Transfer learning: Pre-training and fine-tuning
+
+-20pt
+
+Transfer learning: Pre-training and fine-tuning
+
+-20pt
+
+Other uses of pre-trained representation models
+
+Document vectors can be used to compute the similarity between
+two documents
+
+Very common use case: retrieval systems, included
+retrieval-augmented generation models
+
+-20pt
+
+What are the topics discussed inZenseact's research papers from 2025?Driving with Context: Online Map Matching for Complex Roads Using Lane..GASP: Unifying Geometric and Semantic Self-Supervised Pre-training for...CATPlan: Loss-based Collision Prediction in End-to-End Autonomous DrivingR3D2: Realistic 3D Asset Insertion via Diffusion for Autonomous...The papers from 2025 are typically about AI technologies forautonomous driving, mainly in the computer vision area.Other uses of pre-trained representation models
+
+Document vectors can be used to compute the similarity between
+two documents
+
+Very common use case: retrieval systems, included
+retrieval-augmented generation models
+
+-20pt
+
+What are the topics discussed inZenseact's research papers from 2025?Driving with Context: Online Map Matching for Complex Roads Using Lane..GASP: Unifying Geometric and Semantic Self-Supervised Pre-training for...CATPlan: Loss-based Collision Prediction in End-to-End Autonomous DrivingR3D2: Realistic 3D Asset Insertion via Diffusion for Autonomous...The papers from 2025 are typically about AI technologies forautonomous driving, mainly in the computer vision area.-20pt
+
+BERT (Devlin et al., 2019)
+
+· BERT (Bidirectional Encoder Representations from
+Transformers) is an architecture for transfer
+learning
+· Pushed the state of the art for several tasks
+· Uses the encoder part of the Transformer
+(originally 12 or 24 layers)
+· Key technical point: attention is bidirectional
+
+-20pt
+
+Transfer learning with BERT
+
+-20pt
+
+He
+
+[MASK]
+
+two cans of
+
+fish [MASK]
+
+.
+
+⇓
+
+bought
+
+⇓
+
+soup
+
+Pre-training tasks for BERT (1)
+
+He
+
+bought
+
+two cans of
+
+fish
+
+soup
+
+.
+
+-20pt
+
+⇓
+
+bought
+
+⇓
+
+soup
+
+Pre-training tasks for BERT (1)
+
+He
+
+bought
+
+two cans of
+
+fish
+
+soup
+
+He
+
+[MASK]
+
+two cans of
+
+fish [MASK]
+
+.
+
+.
+
+-20pt
+
+Pre-training tasks for BERT (1)
+
+He
+
+bought
+
+two cans of
+
+fish
+
+soup
+
+He
+
+[MASK]
+
+two cans of
+
+fish [MASK]
+
+.
+
+.
+
+⇓
+
+bought
+
+⇓
+
+soup
+
+-20pt
+
+The man went to the store. Penguins are flightless birds.
+
+⇓
+
+NonAdjacent
+
+Pre-training tasks for BERT (2)
+
+The man went to the store. He bought a bottle of milk.
+⇓
+Adjacent
+
+-20pt
+
+Pre-training tasks for BERT (2)
+
+The man went to the store. He bought a bottle of milk.
+⇓
+Adjacent
+
+The man went to the store. Penguins are flightless birds.
+⇓
+NonAdjacent
+
+-20pt
+
+How to use BERT in different types of tasks
+
+-20pt
+
+Other Transformer representation models
+
+· Improved BERT variants: RoBERTa…
+· Smaller BERT variants: DistilBERT…
+· Domain-specific BERT variants: BioBERT, SciBERT…
+· BERT for improved document representation: SBERT…
+· Multimodal representation models: CLIP …
+
+-20pt
+
+The MTEB benchmark (Muennighoff et al., 2023)
+
+Multiple tasks including similarity, separability, clustering, …
+
+-20pt
+
+The MMTEB benchmark (Enevoldsen et al., 2025)
+
+Originally 8 tasks, only English documents
+
+New version: 131 tasks, 1038 languages
+
+-20pt
+
+Takeaways
+
+A representation model maps a document or a word to a
+numerical representation
+
+Prototypical representative: BERT
+
+A relevant pre-training task is required
+
+Originally, main focus was transfer learning: pre-training and
+specialization
+
+More recently, the main use case is in document retrieval and
+other similarity-based tasks
+
+-20pt
+
+References
+
+J. Devlin, M.-W. Chang, K. Lee, and K. Toutanova. 2019. BERT: Pre-training of deep
+
+bidirectional transformers for language understanding. In NAACL.
+
+K. Enevoldsen, I. Chung, I. Kerboua, and M. Kardos et al. 2025. MMTEB: Massive
+
+multilingual text embedding benchmark. In ICLR.
+
+N. Muennighoff, N. Tazi, L. Magne, and N. Reimers. 2023. MTEB: Massive text
+
+embedding benchmark. In EACL.
+
+-20pt
+
+

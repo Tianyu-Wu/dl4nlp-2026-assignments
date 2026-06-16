@@ -1,0 +1,264 @@
+Machine Learning for Natural Language
+Processing
+Direct Preference Optimization
+
+Richard Johansson
+
+richajo@chalmers.se
+
+Recap of RLHF (Ouyang et al., 2022)
+
+We want to train a LM to maximize a reward r(x, y) that models
+high-level text quality
+
+In RLHF, the reward is a learned model
+trained on human preferences
+
+The reward model is trained using the Bradley–Terry binary
+preference model
+
+P (y1 ≻ y0) = σ(rθ(x, y1) − rθ(x, y0))
+
+-20pt
+
+PPO recap (without token prediction loss)
+
+obj(πRL) = E(x,y)∼DπRL
+
+[r(x, y) − β log(πRL(y|x)/πSFT(y|x))]
+
+Fairly complex to implement: it involves four different models
+
+(πRL, πSFT, r(x, y), and a value network for token-level utility)
+
+-20pt
+
+-20pt
+
+Direct Preference Optimization: key points
+
+Trains on preferences without reinforcement learning
+
+Simpler to implement: reward model not mandatory, no value
+network, no sampling/rollouts
+
+Competitive with PPO in practice
+
+-20pt
+
+· πDPO(y|x) is the probability of y in the trained model
+
+· πSFT(y|x) is the probability of y in the reference SFT model
+
+· β controls how much we deviate from the SFT model
+
+· − log σ is equivalent to BCEWithLogitsLoss
+
+DPO: the objective
+
+Given a training prompt x with outputs yw (winner) and yl (loser):
+
+(
+
+LDPO = − log σ
+
+β log
+
+πDPO(yw|x)
+πSFT(yw|x)
+
+− β log
+
+πDPO(yl|x)
+πSFT(yl|x)
+
+)
+
+-20pt
+
+DPO: the objective
+
+Given a training prompt x with outputs yw (winner) and yl (loser):
+
+(
+
+LDPO = − log σ
+
+β log
+
+πDPO(yw|x)
+πSFT(yw|x)
+
+− β log
+
+πDPO(yl|x)
+πSFT(yl|x)
+
+)
+
+· πDPO(y|x) is the probability of y in the trained model
+· πSFT(y|x) is the probability of y in the reference SFT model
+· β controls how much we deviate from the SFT model
+· − log σ is equivalent to BCEWithLogitsLoss
+
+-20pt
+
+Training data for DPO
+
+Source:
+https://huggingface.co/datasets/openbmb/UltraFeedback
+
+-20pt
+
+Assuming that the reward is Bradley–Terry:
+
+P (yw ≻ yl) = σ(r(x, yw) − r(x, yl))
+
+Combining the two equations, we get the DPO objective:
+
+P (yw ≻ yl) = σ
+
+β log
+
+(
+
+πDPO(yw|x)
+
+πSFT(yw|x)
+
+− β log
+
+πDPO(yl|x)
+
+πSFT(yl|x)
+
+)
+
+Derivation of DPO
+
+For PPO-style RL, it can be shown theoretically that we can write
+the reward in terms of the optimal policy:
+
+r(x, y) = β log
+
+πoptimal(y|x)
+πSFT(y|x)
+
++ β log Z(x)
+
+-20pt
+
+Combining the two equations, we get the DPO objective:
+
+P (yw ≻ yl) = σ
+
+β log
+
+(
+
+πDPO(yw|x)
+
+πSFT(yw|x)
+
+− β log
+
+πDPO(yl|x)
+
+πSFT(yl|x)
+
+)
+
+Derivation of DPO
+
+For PPO-style RL, it can be shown theoretically that we can write
+the reward in terms of the optimal policy:
+
+r(x, y) = β log
+
+πoptimal(y|x)
+πSFT(y|x)
+
++ β log Z(x)
+
+Assuming that the reward is Bradley–Terry:
+
+P (yw ≻ yl) = σ(r(x, yw) − r(x, yl))
+
+-20pt
+
+Derivation of DPO
+
+For PPO-style RL, it can be shown theoretically that we can write
+the reward in terms of the optimal policy:
+
+r(x, y) = β log
+
+πoptimal(y|x)
+πSFT(y|x)
+
++ β log Z(x)
+
+Assuming that the reward is Bradley–Terry:
+
+P (yw ≻ yl) = σ(r(x, yw) − r(x, yl))
+
+Combining the two equations, we get the DPO objective:
+)
+
+(
+
+πDPO(yw|x)
+πSFT(yw|x)
+
+− β log
+
+πDPO(yl|x)
+πSFT(yl|x)
+
+P (yw ≻ yl) = σ
+
+β log
+
+-20pt
+
+-20pt
+
+DPO implementations
+
+· Eric Mitchell’s original implementation: https://github.
+com/eric-mitchell/direct-preference-optimization
+· HuggingFace TRL:
+https://huggingface.co/docs/trl/dpo_trainer
+
+-20pt
+
+DPO: takeaways
+
+Trains on preference data directly, no RL
+
+Competitive with RL-based training approaches
+
+Used in many LLMs (as of 2025): Qwen, Phi, OLMo, Mixtral…
+
+The pipeline is often SFT→DPO→RL
+
+-20pt
+
+References
+
+H. Ivison, Y. Wang, J. Liu, Z. Wu, V. Pyatkin, N. Lambert, N. A. Smith, Y. Choi, and
+
+H. Hajishirzi. 2024. Unpacking DPO and PPO: disentangling best practices for
+learning from preference feedback. In NeurIPS.
+
+L. Ouyang, J. Wu, and X. Jiang et al. 2022. Training language models to follow
+
+instructions with human feedback. arXiv:2203.02155.
+
+R. Rafailov, A. Sharma, E. Mitchell, C. D. Manning, S. Ermon, and C. Finn. 2023.
+Direct preference optimization: Your language model is secretly a reward
+model. In NeurIPS.
+
+-20pt
+
+

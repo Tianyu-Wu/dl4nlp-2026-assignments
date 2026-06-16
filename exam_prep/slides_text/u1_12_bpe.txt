@@ -1,0 +1,1733 @@
+Natural Language Processing
+
+The Byte Pair Encoding Algorithm
+
+Marco Kuhlmann 
+Department of Computer and Information Science
+
+This work is licensed under a  
+Creative Commons Attribution 4.0 International License.
+
+Target representations for tokenisation
+
+• Option :  Tokenise into words 
+
+But: concept of “word” not universal; unknown words 
+
+• Option :  Tokenise into individual characters 
+
+But: may be too small a unit for learning 
+
+• Option :  Tokenise into subwords 
+
+Intuition: words are composed of morphemes
+
+Byte Pair Encoding
+
+Byte Pair Encoding (BPE) is an algorithm for learning subword 
+tokens from text. 
+
+• Step :  Encode the text into a sequence of bytes. Initialise the 
+
+token vocabulary with all single bytes. 
+
+• Step :  Create a new token by merging the most frequent pair of 
+
+consecutive tokens. Add the new token to the vocabulary. 
+
+• Repeat the previous step as long as the token vocabulary does not 
+
+exceed a predeﬁned maximum size.
+
+Sennrich et al. (2016)
+
+The Unicode Standard
+
+• Unicode is a text encoding standard designed to support text 
+from all the world’s writing systems (that can be digitised). 
+
+• Version . supports , characters from  scripts. 
+
+• For backwards compability, the ﬁrst  codepoints of Unicode 
+
+are the same as ASCII.
+
+0000
+
+C0 Controls and Basic Latin 
+
+007F
+
+0900
+
+Devanagari
+
+094E
+
+000
+
+001
+
+002
+
+003
+
+004
+
+005
+
+006
+
+007
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+A
+
+B
+
+C
+
+D
+
+E
+
+F
+
+
+
+
+
+
+
+0000
+
+0010
+
+
+
+
+
+0001
+
+0011
+
+
+
+
+
+0002
+
+0012
+
+
+
+
+
+0003
+
+0013
+
+
+
+
+
+0004
+
+0014
+
+
+
+
+
+0005
+
+0015
+
+
+
+
+
+0006
+
+0016
+
+
+
+
+
+0007
+
+0017
+
+
+
+
+
+0008
+
+0018
+
+
+
+
+
+0009
+
+0019
+
+
+
+
+
+000A
+
+001A
+
+
+
+
+
+000B
+
+001B
+
+
+
+
+
+0020
+
+!
+
+0021
+
+"
+
+0022
+
+#
+
+0023
+
+$
+
+0024
+
+%
+
+0025
+
+&
+
+0026
+
+'
+
+0027
+
+(
+
+0028
+
+)
+
+0029
+
+*
+
+002A
+
++
+
+002B
+
+,
+
+000C
+
+001C
+
+002C
+
+
+
+
+
+-
+
+000D
+
+001D
+
+002D
+
+
+
+
+
+.
+
+000E
+
+001E
+
+002E
+
+
+
+
+
+/
+
+000F
+
+001F
+
+002F
+
+0
+
+0030
+
+1
+
+0031
+
+2
+
+0032
+
+3
+
+0033
+
+4
+
+0034
+
+5
+
+0035
+
+6
+
+0036
+
+7
+
+0037
+
+8
+
+0038
+
+9
+
+0039
+
+:
+
+003A
+
+;
+
+003B
+
+<
+
+003C
+
+=
+
+003D
+
+>
+
+003E
+
+?
+
+003F
+
+@
+
+0040
+
+A
+
+0041
+
+B
+
+0042
+
+C
+
+0043
+
+D
+
+0044
+
+E
+
+0045
+
+F
+
+0046
+
+G
+
+0047
+
+H
+
+0048
+
+I
+
+0049
+
+J
+
+004A
+
+K
+
+004B
+
+L
+
+004C
+
+M
+
+004D
+
+N
+
+004E
+
+O
+
+004F
+
+P
+
+0050
+
+Q
+
+0051
+
+R
+
+0052
+
+S
+
+0053
+
+T
+
+0054
+
+U
+
+0055
+
+V
+
+0056
+
+W
+
+0057
+
+X
+
+0058
+
+Y
+
+0059
+
+Z
+
+005A
+
+[
+
+005B
+
+\
+
+`
+
+0060
+
+a
+
+0061
+
+b
+
+0062
+
+c
+
+0063
+
+d
+
+0064
+
+e
+
+0065
+
+f
+
+0066
+
+g
+
+0067
+
+h
+
+0068
+
+i
+
+0069
+
+j
+
+006A
+
+k
+
+006B
+
+l
+
+005C
+
+006C
+
+]
+
+005D
+
+^
+
+005E
+
+_
+
+005F
+
+m
+
+006D
+
+n
+
+006E
+
+o
+
+006F
+
+p
+
+0070
+
+q
+
+0071
+
+r
+
+0072
+
+s
+
+0073
+
+t
+
+0074
+
+u
+
+0075
+
+v
+
+0076
+
+w
+
+0077
+
+x
+
+0078
+
+y
+
+0079
+
+z
+
+007A
+
+{
+
+007B
+
+|
+
+007C
+
+}
+
+007D
+
+~
+
+007E
+
+
+
+007F
+
+Various signs
+0900 $ऀ DEVANAGARI SIGN INVERTED CANDRABINDU
+= vaidika adhomukha candrabindu
+0901 $ँ DEVANAGARI SIGN CANDRABINDU
+
+= anunasika
+→ 0310 $̐  combining candrabindu
+
+0902 $ं DEVANAGARI SIGN ANUSVARA
+
+= bindu
+
+0903 $ः DEVANAGARI SIGN VISARGA
+Independent vowels
+0904 ऄ DEVANAGARI LETTER SHORT A
+
+• used for short e in Awadhi
+• also used in Devanagari transliterations of some
+
+South Indian and Kashmiri languages by a
+publisher in Lucknow
+0905 अ DEVANAGARI LETTER A
+0906 आ DEVANAGARI LETTER AA
+0907
+इ DEVANAGARI LETTER I
+0908
+ई DEVANAGARI LETTER II
+0909 उ DEVANAGARI LETTER U
+090A ऊ DEVANAGARI LETTER UU
+090B ऋ DEVANAGARI LETTER VOCALIC R
+090C ऌ DEVANAGARI LETTER VOCALIC L
+090D ऍ DEVANAGARI LETTER CANDRA E
+090E ऎ DEVANAGARI LETTER SHORT E
+
+• Kashmiri, Bihari languages
+• also used for transcribing Dravidian short e
+
+090F ए DEVANAGARI LETTER E
+0910 ऐ DEVANAGARI LETTER AI
+0911 ऑ DEVANAGARI LETTER CANDRA O
+0912 ऒ DEVANAGARI LETTER SHORT O
+
+• Kashmiri, Bihari languages
+• also used for transcribing Dravidian short o
+
+0913 ओ DEVANAGARI LETTER O
+0914 औ DEVANAGARI LETTER AU
+Consonants
+0915 क DEVANAGARI LETTER KA
+0916 ख DEVANAGARI LETTER KHA
+0917 ग DEVANAGARI LETTER GA
+0918 घ DEVANAGARI LETTER GHA
+0919 ङ DEVANAGARI LETTER NGA
+091A च DEVANAGARI LETTER CA
+091B छ DEVANAGARI LETTER CHA
+091C ज DEVANAGARI LETTER JA
+091D झ DEVANAGARI LETTER JHA
+091E ञ DEVANAGARI LETTER NYA
+091F
+ट DEVANAGARI LETTER TTA
+0920
+ठ DEVANAGARI LETTER TTHA
+0921 ड DEVANAGARI LETTER DDA
+0922
+0923 ण DEVANAGARI LETTER NNA
+0924 त DEVANAGARI LETTER TA
+0925 थ DEVANAGARI LETTER THA
+0926
+द DEVANAGARI LETTER DA
+0927 ध DEVANAGARI LETTER DHA
+0928 न DEVANAGARI LETTER NA
+0929 ऩ DEVANAGARI LETTER NNNA
+
+ढ DEVANAGARI LETTER DDHA
+
+• for transcribing Dravidian alveolar n
+≡ 0928 न  093C $़ 
+
+092A प DEVANAGARI LETTER PA
+092B फ DEVANAGARI LETTER PHA
+
+092C ब DEVANAGARI LETTER BA
+092D भ DEVANAGARI LETTER BHA
+092E म DEVANAGARI LETTER MA
+092F य DEVANAGARI LETTER YA
+0930
+र DEVANAGARI LETTER RA
+0931
+ऱ DEVANAGARI LETTER RRA
+
+• for transcribing Dravidian alveolar r
+• half form is represented as “Eyelash RA”
+≡ 0930 र  093C $़ 
+
+0932 ल DEVANAGARI LETTER LA
+0933 ळ DEVANAGARI LETTER LLA
+0934 ऴ DEVANAGARI LETTER LLLA
+• for transcribing Dravidian l
+≡ 0933 ळ  093C $़ 
+
+0935 व DEVANAGARI LETTER VA
+0936 श DEVANAGARI LETTER SHA
+0937 ष DEVANAGARI LETTER SSA
+0938 स DEVANAGARI LETTER SA
+0939
+ह DEVANAGARI LETTER HA
+
+Dependent vowel signs
+These dependent vowel signs are used in Kashmiri and in the
+Bihari languages (Bhojpuri, Magadhi, and Maithili).
+093A $ऺ DEVANAGARI VOWEL SIGN OE
+093B $ऻ DEVANAGARI VOWEL SIGN OOE
+Various signs
+093C $़ DEVANAGARI SIGN NUKTA
+
+• for extending the alphabet to new letters
+
+093D
+
+ऽ DEVANAGARI SIGN AVAGRAHA
+
+Dependent vowel signs
+093E $ा DEVANAGARI VOWEL SIGN AA
+093F $ि DEVANAGARI VOWEL SIGN I
+
+• stands to the left of the consonant
+
+0940 $ी DEVANAGARI VOWEL SIGN II
+0941 $ु DEVANAGARI VOWEL SIGN U
+0942 $ू DEVANAGARI VOWEL SIGN UU
+0943 $ृ DEVANAGARI VOWEL SIGN VOCALIC R
+0944 $ॄ DEVANAGARI VOWEL SIGN VOCALIC RR
+0945 $ॅ DEVANAGARI VOWEL SIGN CANDRA E
+
+= candra
+
+0946 $ॆ DEVANAGARI VOWEL SIGN SHORT E
+• Kashmiri, Bihari languages
+• also used for transcribing Dravidian short e
+
+0947 $े DEVANAGARI VOWEL SIGN E
+0948 $ै DEVANAGARI VOWEL SIGN AI
+0949 $ॉ DEVANAGARI VOWEL SIGN CANDRA O
+094A $ॊ DEVANAGARI VOWEL SIGN SHORT O
+• Kashmiri, Bihari languages
+• also used for transcribing Dravidian short o
+
+094B $ो DEVANAGARI VOWEL SIGN O
+094C $ौ DEVANAGARI VOWEL SIGN AU
+Virama
+094D $् DEVANAGARI SIGN VIRAMA
+
+= halant (the preferred Hindi name)
+• suppresses inherent vowel
+
+Dependent vowel signs
+094E $ॎ DEVANAGARI VOWEL SIGN PRISHTHAMATRA E
+
+• character has historic use only
+• combines with E to form AI, with AA to form O,
+
+and with O to form AU
+
+2
+
+The Unicode Standard, Version 16.0, Copyright © 1991-2024 Unicode, Inc. All rights reserved.
+
+The Unicode Standard, Version 16.0, Copyright © 1991-2024 Unicode, Inc. All rights reserved.
+
+81
+
+Encoding text into bytes
+
+• Encoding all (more than  million) Unicode characters into bytes 
+
+requires more than one byte per character. 
+
+• UTF- (-bit Unicode Transformation Format) is the most 
+
+widely used encoding scheme for Unicode. 
+
+•
+
+It uses a variable-width encoding of – bytes per character. 
+
+e ﬁrst byte indicates how many additional bytes are part of the character.
+
+Encoding text into bytes
+
+Einu sinni deildu norðanvindurinn og sólin um, kvort þeirra væri sterkara.
+
+74 Unicode characters
+
+E
+
+69
+
+n
+
+i
+
+n
+
+u
+
+s
+
+i
+
+n
+
+n
+
+i
+
+d
+
+e
+
+i
+
+l
+
+d
+
+u
+
+n
+
+o
+
+r
+
+ð
+
+105
+
+110
+
+117
+
+32
+
+115
+
+105
+
+110
+
+110
+
+105
+
+32
+
+100
+
+101
+
+105
+
+108
+
+100
+
+117
+
+32
+
+110
+
+111
+
+114
+
+195
+
+176
+
+a
+
+97
+
+v
+
+i
+
+n
+
+d
+
+u
+
+r
+
+i
+
+n
+
+n
+
+o g
+
+s
+
+ó
+
+l
+
+i
+
+n
+
+n
+
+u m
+
+110
+
+118
+
+105
+
+110
+
+100
+
+117
+
+114
+
+105
+
+110
+
+110
+
+32
+
+111
+
+103
+
+32
+
+115
+
+195
+
+179
+
+108
+
+105
+
+110
+
+110
+
+32
+
+117
+
+109
+
+,
+
+k
+
+v
+
+o
+
+r
+
+t
+
+þ
+
+e
+
+i
+
+r
+
+r
+
+44
+
+32
+
+107
+
+118
+
+111
+
+114
+
+116
+
+32
+
+195
+
+190
+
+101
+
+105
+
+114
+
+114
+
+a
+
+97
+
+v
+
+æ
+
+r
+
+i
+
+s
+
+t
+
+32
+
+118
+
+195
+
+166
+
+114
+
+105
+
+32
+
+115
+
+116
+
+e
+
+r
+
+k
+
+101
+
+114
+
+107
+
+a
+
+97
+
+r
+
+114
+
+a
+
+97
+
+.
+
+46
+
+78 bytes in UTF-8
+
+The North Wind and the Sun were disputing which was the stronger, 
+when a traveler came along wrapped in a warm cloak. They agreed that 
+the one who first succeeded in making the traveler take his cloak 
+off should be considered stronger than the other. 
+
+Vocabulary (without single bytes)
+
+Pair counts
+
+Token ID
+
+Token
+
+Token pair
+
+Count
+
+
+
+
+
+
+
+
+
+
+
+e + 
+
+ + t
+
+h + e
+
+t + h
+
+d + 
+
+
+
+
+
+
+
+
+
+
+
+The North Wind and the Sun were disputing which was the stronger, 
+when a traveler came along wrapped in a warm cloak. They agreed that 
+the one who first succeeded in making the traveler take his cloak 
+off should be considered stronger than the other. 
+
+Vocabulary (without single bytes)
+
+Pair counts
+
+Token
+
+[e ]
+
+Token ID
+
+
+
+
+
+
+
+
+
+
+
+Token pair
+
+Count
+
+e + 
+
+ + t
+
+h + e
+
+t + h
+
+d + 
+
+
+
+
+
+
+
+
+
+
+
+Th[e ]North Wind and th[e ]Sun wer[e ]disputing which was 
+th[e ]stronger, when a traveler cam[e ]along wrapped in a warm 
+cloak. They agreed that th[e ]on[e ]who first succeeded in making 
+th[e ]traveler tak[e ]his cloak off should b[e ]considered stronger 
+than th[e ]other. 
+
+Vocabulary (without single bytes)
+
+Pair counts
+
+Token
+
+[e ]
+
+Token ID
+
+
+
+
+
+
+
+
+
+
+
+Token pair
+
+Count
+
+t + h
+
+ + t
+
+d + 
+
+e + r
+
+h + [e ]
+
+
+
+
+
+
+
+
+
+
+
+Th[e ]North Wind and th[e ]Sun wer[e ]disputing which was 
+th[e ]stronger, when a traveler cam[e ]along wrapped in a warm 
+cloak. They agreed that th[e ]on[e ]who first succeeded in making 
+th[e ]traveler tak[e ]his cloak off should b[e ]considered stronger 
+than th[e ]other. 
+
+Vocabulary (without single bytes)
+
+Pair counts
+
+Token ID
+
+Token
+
+Token pair
+
+Count
+
+[e ]
+
+[th]
+
+
+
+
+
+
+
+
+
+
+
+t + h
+
+ + t
+
+d + 
+
+e + r
+
+h + [e ]
+
+
+
+
+
+
+
+
+
+
+
+Th[e ]Nor[th] Wind and [th][e ]Sun wer[e ]disputing which was  
+[th][e ]stronger, when a traveler cam[e ]along wrapped in a warm 
+cloak. They agreed [th]at [th][e ]on[e ]who first succeeded in 
+making [th][e ]traveler tak[e ]his cloak off should b[e ]considered 
+stronger [th]an [th][e ]o[th]er. 
+
+Vocabulary (without single bytes)
+
+Pair counts
+
+Token ID
+
+Token
+
+Token pair
+
+Count
+
+[e ]
+
+[th]
+
+
+
+
+
+
+
+
+
+
+
+d + 
+
+ + [th]
+
+e + r
+
+ + w
+
+i + n
+
+
+
+
+
+
+
+
+
+
+
+Th[e ]Nor[th] Wind and [th][e ]Sun wer[e ]disputing which was  
+[th][e ]stronger, when a traveler cam[e ]along wrapped in a warm 
+cloak. They agreed [th]at [th][e ]on[e ]who first succeeded in 
+making [th][e ]traveler tak[e ]his cloak off should b[e ]considered 
+stronger [th]an [th][e ]o[th]er. 
+
+Vocabulary (without single bytes)
+
+Pair counts
+
+Token ID
+
+Token
+
+Token pair
+
+Count
+
+[e ]
+
+[th]
+
+[d ]
+
+
+
+
+
+
+
+
+
+
+
+d + 
+
+ + [th]
+
+e + r
+
+ + w
+
+i + n
+
+
+
+
+
+
+
+
+
+
+
+Th[e ]Nor[th] Win[d ]an[d ][th][e ]Sun wer[e ]disputing which was  
+[th][e ]stronger, when a traveler cam[e ]along wrappe[d ]in a warm 
+cloak. They agree[d ][th]at [th][e ]on[e ]who first succeede[d ]in 
+making [th][e ]traveler tak[e ]his cloak off 
+shoul[d ]b[e ]considere[d ]stronger [th]an [th][e ]o[th]er. 
+
+Vocabulary (without single bytes)
+
+Pair counts
+
+Token ID
+
+Token
+
+Token pair
+
+Count
+
+[e ]
+
+[th]
+
+[d ]
+
+
+
+
+
+
+
+
+
+
+
+e + r
+
+ + w
+
+i + n
+
+[th] + [e ]
+
+n + 
+
+
+
+
+
+
+
+
+
+
+
+Th[e ]Nor[th] Win[d ]an[d ][th][e ]Sun wer[e ]disputing which was  
+[th][e ]stronger, when a traveler cam[e ]along wrappe[d ]in a warm 
+cloak. They agree[d ][th]at [th][e ]on[e ]who first succeede[d ]in 
+making [th][e ]traveler tak[e ]his cloak off 
+shoul[d ]b[e ]considere[d ]stronger [th]an [th][e ]o[th]er. 
+
+Vocabulary (without single bytes)
+
+Pair counts
+
+Token ID
+
+Token
+
+Token pair
+
+Count
+
+
+
+
+
+
+
+
+
+
+
+[e ]
+
+[th]
+
+[d ]
+
+[er]
+
+e + r
+
+ + w
+
+i + n
+
+[th] + [e ]
+
+n + 
+
+
+
+
+
+
+
+
+
+
+
+Th[e ]Nor[th] Win[d ]an[d ][th][e ]Sun w[er][e ]disputing which was  
+[th][e ]strong[er], when a travel[er] cam[e ]along wrappe[d ]in  
+a warm cloak. They agree[d ][th]at [th][e ]on[e ]who first 
+succeede[d ]in making [th][e ]travel[er] tak[e ]his cloak off 
+shoul[d ]b[e ]consid[er]e[d ]strong[er] [th]an [th][e ]o[th][er]. 
+
+Vocabulary (without single bytes)
+
+Pair counts
+
+Token ID
+
+Token
+
+Token pair
+
+Count
+
+
+
+
+
+
+
+
+
+
+
+[e ]
+
+[th]
+
+[d ]
+
+[er]
+
+ + w
+
+i + n
+
+[th] + [e ]
+
+n + 
+
+n + g
+
+
+
+
+
+
+
+
+
+
+
+Th[e ]Nor[th] Win[d ]an[d ][th][e ]Sun w[er][e ]disputing which was  
+[th][e ]strong[er], when a travel[er] cam[e ]along wrappe[d ]in  
+a warm cloak. They agree[d ][th]at [th][e ]on[e ]who first 
+succeede[d ]in making [th][e ]travel[er] tak[e ]his cloak off 
+shoul[d ]b[e ]consid[er]e[d ]strong[er] [th]an [th][e ]o[th][er]. 
+
+Vocabulary (without single bytes)
+
+Pair counts
+
+Token ID
+
+Token
+
+Token pair
+
+Count
+
+
+
+
+
+
+
+
+
+
+
+[e ]
+
+[th]
+
+[d ]
+
+[er]
+
+[ w]
+
+ + w
+
+i + n
+
+[th] + [e ]
+
+n + 
+
+n + g
+
+
+
+
+
+
+
+
+
+
+
+Th[e ]Nor[th] Win[d ]an[d ][th][e ]Sun[ w][er][e ]disputing 
+[ w]hich[ w]as [th][e ]strong[er],[ w]hen a travel[er] cam[e ]along 
+[ w]rappe[d ]in a[ w]arm cloak. They agree[d ][th]at [th]
+[e ]on[e ]who first succeede[d ]in making [th][e ]travel[er] 
+tak[e ]his cloak off shoul[d ]b[e ]consid[er]e[d ]strong[er] [th]an 
+[th][e ]o[th][er]. 
+
+Vocabulary (without single bytes)
+
+Token ID
+
+Token
+
+
+
+
+
+
+
+
+
+
+
+[e ]
+
+[th]
+
+[d ]
+
+[er]
+
+[ w]
+
+Some comments on BPE
+
+• e tokens obtained using BPE match varying spans of source 
+
+text, from single characters to whole words and beyond. 
+
+• e tokens are not guaranteed to have any apparent linguistic 
+
+meaning, but oen resemble words or morphemes. 
+
+BPE = “poor man’s morphology” 
+
+• BPE solves the problem with unknown words: Every text can be 
+
+tokenised; in the worst case, it is tokenised as bytes.
+
+Tokenisation in language models
+
+Model
+
+BERT
+
+GPT-
+
+GPT-.
+
+GPT-o
+
+Llama 
+
+Release year
+
+Tokenisation method
+
+Vocabulary size
+
+
+
+
+
+
+
+
+
+
+
+WordPiece
+
+BPE
+
+BPE
+
+BPE
+
+BPE
+
+ K
+
+ K
+
+ K
+
+ K
+
+ K
+
+

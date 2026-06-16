@@ -1,0 +1,295 @@
+Natural Language Processing
+
+Introduction to embeddings
+
+Marco Kuhlmann 
+Department of Computer and Information Science
+
+This work is licensed under a  
+Creative Commons Attribution 4.0 International License.
+
+combine
+
+decode
+
+embed
+
+encode
+
+tokenise
+
+rule them all
+
+str
+
+rule
+
+them
+
+all
+
+list[str]
+
+28993
+
+31365
+
+15169
+
+Tensor[int]
+
+neural language model
+
+−0.82, 0.37
+
+0.56, 0.53
+
+0.29, −0.60
+
+Tensor[ﬂoat]
+
+25874
+
+28830
+
+31543
+
+Tensor[int]
+
+one
+
+ring
+
+to
+
+list[str]
+
+one ring to
+
+str
+
+Embedding layers
+
+• Aer each token has been encoded as an integer, it is sent 
+
+through an embedding layer. 
+
+• e embedding layer assigns each token a ﬁxed-size vector of 
+
+ﬂoating-point numbers. 
+
+•
+
+Initially, these numbers are random, but we will tune them when 
+training the embedding layer.
+
+Bag-of-words classiﬁer
+
+P(class | great monster movie)
+
+softmax
+
+Linear
+
+mean
+
+embedding layer
+
+Embed
+
+Embed
+
+Embed
+
+22074
+
+25149
+
+25258
+
+great
+
+monster
+
+movie
+
+Embedding layers in PyTorch
+
+s2i = {'great': 0, 'monster': 1, 'movie': 2} 
+
+import torch 
+
+number of words to embed
+
+emb = torch.nn.Embedding(3, 2) 
+
+size of each embedding vector
+
+emb(torch.tensor(s2i['monster'], dtype=torch.long)) 
+
+# tensor([0.6399, 0.1779], grad_fn=<EmbeddingBackward>) 
+
+emb(torch.tensor([s2i[s] for s in s2i], dtype=torch.long)) 
+
+tensor([[ 0.4503, -0.1549], 
+
+        [ 0.6399,  0.1779], 
+
+        [-0.6537, -0.5875]], grad_fn=<EmbeddingBackward>)
+
+Implementation of the bag-of-words classiﬁer
+
+class Classifier(nn.Module): 
+
+    def __init__(self, num_embeddings, embedding_dim, num_classes): 
+
+        super().__init__() 
+
+        self.embedding = nn.Embedding(num_embeddings, embedding_dim) 
+
+        self.linear = nn.Linear(embedding_dim, num_classes) 
+
+    def forward(self, x): 
+
+        # x is a tensor containing token IDs 
+
+        return self.linear(self.embedding(x).mean(dim=-2))
+
+Embedding layers as linear layers
+
+one-hot vector  
+for monster
+
+embedding  
+weights
+
+embedding vector  
+for monster
+
+<latexit sha1_base64="rdJCC4jp3lXE+9d8KbQNItQAnk0=">AAAGtXicjVTfb9s2EJbbzmvV/Ujbx74QdTMMm21IdhzFLVwE6FBswLJmddIGMI2Aks42EYlURaqtK+ihr90/sn9pf0jfd5SMZJYTLAIkkHfffffpjjw/ibjSjvNP48bNW181v759x777zbfffb917/5rJbM0gONARjI98ZmCiAs41lxHcJKkwGI/gjf+2XPjf/MOUsWlONLLBKYxmws+4wHTaDrd+kJ9mHOR+zHTKf9Q2A75gbj4OjYFEV7Y6VO7DqWLZMGElnH+c+F0dwZOH+M6Ttcd7Awprbl3+8MhuteNrucZJMbsDvpeFT3Y8wb13G8zFo7K7/+IuDLLOuPpVsvpOuVDNhfuatGyVs/h6b1bf9NQBlkMQgcRU2riOome5izVPIgAZWQKEhacsTlMcClYDGqal/0pyDZaQjKTKb5Ck9L634icxUotYx+RKHCh6j5jvMw3yfRsb5pzkWQaRFAlmmUR0ZKYZpOQpxDoaIkLFqQctZJgwVIWaDwStk1fwdsMIYerVEadSiAo7LUsJm9H6WUEo9/GL9u+jMKL7TTPBA9kCJ1SJUYq0DHjwpBNbELG/CO8AKazFBQZkRxNhOTGirvOXnenTV4mqIxFK9te0V7DIKTj9uso163B3H7HHXaHG7hhHYegTh3l9QoElcjf+fxc7BGcGNMfWexjwYz6AymkwsJAiBRRODZlwLBpfsAFXihymMrzGujF9Wqw2yYvzLkYkYrkwNT7iItlm5T8xoGmMXYw0dW39k+7VR03WZ6zRF/GckWJNwlewTyLWHoNjvP6b5KMM39xHQbTGa93GcMvXCU1tNfrXIW8NJfp70WfDlaHNWZn2JcINN4Imwp4H8g4ZiL8Kac6ZUIlUkGRb2NwTk1HE1Zi6f65Ny+KbbuoxV64i0lvWsZvk5b7hBgOUl6eytR7QjJhxgNuacq4Al9+yGkICerLH9N4Xy9aLuUC9eFxfVzlqlRLvUDRNkVF9B0EI2pmyAxnm1ufZJuL1z0c013nz53W/rPVlLttPbQeWT9aruVZ+9av1qF1bAWNSeNT43Pjr6bXnDbD5qyC3misYh5Ya09T/gsfABj1</latexit>
+
+(cid:17)(cid:705) (cid:634)
+(cid:652)
+
+(cid:17)(cid:15)(cid:21)(cid:22)(cid:17)(cid:20) (cid:247)(cid:17)(cid:15)(cid:18)(cid:22)(cid:21)(cid:26)
+(cid:17)(cid:15)(cid:18)(cid:24)(cid:24)(cid:26)
+(cid:17)(cid:15)(cid:23)(cid:20)(cid:26)(cid:26)
+(cid:247)(cid:17)(cid:15)(cid:23)(cid:22)(cid:20)(cid:24) (cid:247)(cid:17)(cid:15)(cid:22)(cid:25)(cid:24)(cid:22)
+𝑉 × 𝑑
+
+(cid:635)
+
+(cid:653)
+
+(cid:698)(cid:17)
+
+(cid:18)
+
+1 × 𝑉
+
+(cid:30)
+
+(cid:698) (cid:17)(cid:15)(cid:23)(cid:20)(cid:26)(cid:26)
+
+(cid:17)(cid:15)(cid:18)(cid:24)(cid:24)(cid:26)(cid:705)
+
+1 × 𝑑
+
+size of the  
+vocabulary
+
+embedding  
+size
+
+Trained embeddings are task-speciﬁc
+
+•
+
+Initially, the embedding vectors are ﬁlled with random values. 
+
+In PyTorch, these values come from the standard normal distribution. 
+
+• During training, backpropagation optimises the embedding 
+
+vectors for the task at hand. 
+
+• Aer training, embedding vectors for which the network 
+produces similar outputs will be similar to each other. 
+
+as measured, for example, by cosine similarity
+
+Embeddings for transfer learning
+
+• Transfer learning aims to re-use knowledge gained while solving 
+
+some previous task when solving the next task. 
+
+speed up training, reduce the need for training data 
+
+•
+
+•
+
+In the context of deep learning, transfer learning is typically 
+implemented by re-using some part of a trained model. 
+
+In particular, we could try re-using the embedding layers, instead 
+of learning embeddings from scratch for each task.
+
+Bag-of-words classiﬁer
+
+P(class | great monster movie)
+
+softmax
+
+Linear
+
+mean
+
+reused part
+
+Embed
+
+Embed
+
+Embed
+
+22074
+
+25149
+
+25258
+
+great
+
+monster
+
+movie
+
+Re-using pre-trained embeddings
+
+Pre-train embeddings on task A and use them to initialise the 
+embedding layers of the network for task B. en: 
+
+• Alternative :  Train as usual, eﬀectively ﬁne-tuning the pre-
+
+trained embeddings to the task at hand. 
+
+• Alternative :  Freeze the weights of the embedding layers,  
+to prevent the pre-trained embeddings from being modiﬁed.
+
+What pre-training tasks should we use?
+
+• We want to learn representations that are generally useful,  
+
+so we prefer pre-training tasks that are general. 
+
+• We need to ﬁnd training data for the pre-training tasks,  
+
+so we prefer tasks for which data is abundant. 
+
+ideal candidate: raw text 
+
+• is makes language modelling an attractive pre-training task.
+
+

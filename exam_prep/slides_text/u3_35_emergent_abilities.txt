@@ -1,0 +1,478 @@
+Natural Language Processing
+
+Emergent abilities of LLMs
+
+Marco Kuhlmann 
+Department of Computer and Information Science
+
+This work is licensed under a  
+Creative Commons Attribution 4.0 International License.
+
+Pretraining and ﬁnetuning
+
+students
+
+opened
+
+their
+
+books
+
+[EOS]
+
+softmax
+
+softmax
+
+softmax
+
+softmax
+
+softmax
+
+Linear
+
+Linear
+
+Linear
+
+Linear
+
+Linear
+
+Transformer
+
+the
+
+students
+
+opened
+
+their
+
+books
+
+Step 1: Pretrain on language modelling
+
+Large quantities of text, general facts about language
+
+Pretraining and ﬁnetuning
+
+🙂 /🙁
+
+softmax
+
+Linear
+
+update all parameters
+
+Transformer
+
+this
+
+was
+
+a
+
+great
+
+movie
+
+Step 2: Finetune on speciﬁc tasks
+
+Small quantities of labelled data, task-speciﬁc knowledge
+
+Model growth
+
+GPT-1
+
+GPT-2
+
+GPT-3
+
+GPT-4
+
+Number of dimensions
+
+Number of layers
+
+768
+
+12
+
+1,600
+
+12,288
+
+48
+
+96
+
+?
+
+120
+
+Trainable parameters
+
+0.117 B
+
+1.542 B
+
+175 B
+
+1,800 B
+
+Training data size
+
+4 GB
+
+40 GB
+
+570 GB
+
+?
+
+Radford et al. (2018), Radford et al. (2019), Brown et al. (2020)
+
+GPT-1: Eﬀective pretraining
+
+Language modelling is an eﬀective pretraining method for a broad 
+range of tasks in natural language understanding.
+
+Radford et al. (2018)
+
+117M
+
+1.5B
+
+175B
+
+GPT-1
+
+GPT-2
+
+GPT-3
+
+Eﬀective pretraining
+
+Natural Language Inference (NLI)
+
+Question answering
+
+Premise:  A man inspects the uniform of a 
+ﬁgure in some East Asian country. 
+
+Question:  The ﬁrst postage stamp was 
+made … 
+
+Hypothesis:  The man is sleeping. 
+
+Label:  contradiction
+
+Candidate answers:  A. in England,  
+B. in America, C. by Alice, D. in 1910
+
+Method
+
+MNLI +
+
+MNLI –
+
+Previous state-of-the-art
+
+GPT-1 (Radford et al., 2018)
+
+80.6
+
+82.1
+
+80.1
+
+81.4
+
+QNLI
+
+82.3
+
+88.1
+
+RTE
+
+61.7
+
+56.0
+
+SNLI
+
+89.3
+
+89.9
+
+GPT-2: Emergent zero-shot learning
+
+zero-shot learning 
+
+the ability of a machine learning model to solve tasks  
+out-of-the-box, with no examples and no gradient updates
+
+Radford et al. (2019)
+
+117M
+
+1.5B
+
+175B
+
+GPT-1
+
+GPT-2
+
+GPT-3
+
+Zero-shot learning
+
+Radford et al. (2019)
+
+Sequence prediction 
+
+Sequence modelling 
+
+Question: Who took the ﬁrst steps on  
+the moon in 1969? 
+
+model output
+
+The trophy doesn’t ﬁt into the brown  
+suitcase because it is too large. 
+
+Answer: Neil Armstrong 
+
+it = …    p(trophy) > p(suitcase) 
+
+Question: Which Stanford University 
+alumna co-founded Coursera? 
+
+The trophy doesn’t ﬁt into the brown  
+suitcase because it is too small. 
+
+Answer: Daphne Koller
+
+it = …    p(trophy) < p(suitcase)
+
+GPT-3: Emergent in-context learning
+
+in-context learning 
+
+the ability of a machine learning model to learn tasks from a few 
+examples, with no gradient updates
+
+Brown et al. (2020)
+
+117M
+
+1.5B
+
+175B
+
+GPT-1
+
+GPT-2
+
+GPT-3
+
+In-context learning
+
+Brown et al. (2020); examples from Jesse Mu
+
+Word unscrambling 
+
+Machine translation 
+
+gaot => goat 
+
+sakne => snake 
+
+brid => bird 
+
+fsih => ﬁsh 
+
+dcuk => duck 
+
+cmihp => chimp
+
+i
+
+n
+-
+c
+o
+n
+t
+e
+x
+t
+
+l
+e
+a
+r
+n
+n
+g
+
+i
+
+thanks => merci 
+
+hello => bonjour 
+
+mint => menthe 
+
+wall => mur 
+
+otter => loutre 
+
+bread => pain
+
+i
+
+n
+-
+c
+o
+n
+t
+e
+x
+t
+
+l
+e
+a
+r
+n
+n
+g
+
+i
+
+ 
+ 
+Chain-of-thought prompting
+
+Wei et al. (2022)
+
+Standard prompting 
+
+Chain-of-thought prompting 
+
+Q: Roger has 5 tennis balls. He buys 2 more 
+cans of tennis balls. Each can has 3 balls. How 
+many tennis balls does he have now? 
+
+Q: Roger has 5 tennis balls. He buys 2 more 
+cans of tennis balls. Each can has 3 balls. How 
+many tennis balls does he have now? 
+
+A: The answer is 11. 
+
+A: Roger started with 5 balls. 2 cans of 3 balls 
+each is 6 balls. 5 + 6 = 11. The answer is 11. 
+
+Q: The cafeteria had 23 apples. If they used 
+20 to make lunch and bought 6 more, how 
+many apples do they have? 
+
+Q: The cafeteria had 23 apples. If they used 
+20 to make lunch and bought 6 more, how 
+many apples do they have? 
+
+A: The answer is 11.
+
+A: The cafeteria had 23 apples originally. 
+They used 20 to make lunch. So they had 
+23 – 20 = 3. They bought 6 more apples, so 
+they had 3 + 6 = 9. The answer is 9.
+
+ 
+Zero-shot chain-of-thought prompting
+
+Kojima et al. (2022)
+
+Chain-of-thought prompting 
+
+Zero-shot chain-of-thought prompting 
+
+Q: Roger has 5 tennis balls. He buys 2 more 
+cans of tennis balls. Each can has 3 balls. How 
+many tennis balls does he have now? 
+
+Q: Roger has 5 tennis balls. He buys 2 more 
+cans of tennis balls. Each can has 3 balls. How 
+many tennis balls does he have now? 
+
+A: Roger started with 5 balls. 2 cans of 3 balls 
+each is 6 balls. 5 + 6 = 11. The answer is 11. 
+
+A: The answer is 11. 
+
+Q: The cafeteria had 23 apples. If they used 
+20 to make lunch and bought 6 more, how 
+many apples do they have? 
+
+Q: The cafeteria had 23 apples. If they used 
+20 to make lunch and bought 6 more, how 
+many apples do they have? 
+
+A: The cafeteria had 23 apples originally. They 
+used 20 to make lunch. So they had  
+23 – 20 = 3. They bought 6 more apples, so 
+they had 3 + 6 = 9. The answer is 9.
+
+A: Let’s think step by step. The cafeteria had 
+23 apples originally. They used 20 to make 
+lunch, so they had 23 – 20 = 3. They bought 
+6 more apples, so they had 3 + 6 = 9.  
+The answer is 9.
+
+Prompt engineering
+
+designed by a LM
+
+Prompt
+
+Let’s work this out in a step by step way to be sure we have the right answer.
+
+Let’s think step by step.
+
+First, …
+
+Let’s think about this logically.
+
+Let’s solve this problem by splitting it into steps
+
+Let’s be realistic and think step by step.
+
+Let’s think like a detective step by step.
+
+(Zero-shot)
+
+Accuracy
+
+82.0
+
+78.7
+
+77.3
+
+74.5
+
+72.2
+
+70.8
+
+70.3
+
+17.7
+
+

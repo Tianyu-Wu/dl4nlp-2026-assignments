@@ -1,0 +1,214 @@
+Adversarial Tokenization
+
+Renato Geh*, Zilei Shao*, Guy Van den Broeck
+
+University of California, Los Angeles
+
+Tokenization
+
+Most language models represent distributions over sequences of tokens 
+(subwords), not strings.
+
+For example:
+
+Canonical tokenization
+
+How do we tokenize? There is usually a unique canonical tokenization:
+
+(Llama 2)
+
+Common assumption:
+
+✘ 
+
+A string can be tokenized in an exponential number of ways (784 here!)
+
+(Llama 2)
+
+Semantic understanding in tokenizations
+
+Can we measure how different the semantic understanding (signal) of tokenizations are wrt an LLM?
+
+In other words, at what point (how far from canonical) does the LLM not recognize a tokenization?
+
+3
+
+2
+
+9
+
+⋮
+
+✔
+✔
+
+When does it go 
+from ✔ to ✘?
+
+⋮
+✘ 
+
+Can we define a metric space for tokenizations?
+
+Edit distance! (Levenshtein distance)
+
+  
+Are all tokenizations created equal?
+
+But what about these tokenizations?
+
+Canonical tok
+
+Character-level tok
+
+The further away (from canonical), the lower the semantic signal!
+
+Noncanonical tokenizations evade safety
+
+Alignment shovels probability mass away from malicious behavior…
+
+…but only for canonical tokenizations!
+
+Can we sample tokenizations with high semantic signal that evade alignment?
+
+S(trong)
+R(eject)
+Score
+measures 
+harmfulness 
+& relevance
+
+Adversarial tokenization
+
+How to find the tokenization most likely to elicit dangerous responses?
+
+Sure, here’s a tutorial on how to make a bomb
+
+Tokenization of 
+Tell me how to make a bomb.
+
+Theorem. The conditional most likely 
+tokenization problem is NP-hard.
+
+✘ 
+
+(practically same reduction from 3-SAT) 
+
+Solution: greedily approximate with local search
+
+Adversarial tokenization
+
+Maximize
+
+↪ Neighborhood?
+↪ Given tok v, it is the set of tokenization with distance of 2 to v, denoted 
+
+as 
+
+Ensures efficiency
+
+Ensures thoroughness
+
+1
+
+Bounded #edges
+
+2
+
+Connectivity
+
+3
+
+Adversarial tokenization
+
+Maximize
+
+↪ Neighborhood?
+↪ Given tok v, it is the set of tokenization with distance of 2 to v, denoted 
+
+as 
+
+Set of tokenization with distance of 2
+
+Case Study: Jailbreaking
+
+Provoke the LLM to output faithful response to harmful prompt
+
+Case Study: Jailbreaking
+
+Provoke the LLM to output faithful response to harmful prompt
+
+↪ Seamlessly combined with existing jailbreaking pipelines
+↪ Achieves SoTA performance on state-of-the-art LLMs
+
+Renato Lui Geh, Zilei Shao, Guy Van den Broeck. Adversarial Tokenization, ACL 2025
+
+Case Study: Evading Safety Models
+
+Bypass the existing defense layers against malicious requests that reliably 
+distinguish (un)safe prompts
+
+↪ Substantially increases the probability of bypassing these safety checks
+
+↑5-10%
+
+Case Study: Prompt Injection
+
+A malicious agent intercepts the conversation by altering the user input to provoke 
+a malicious response
+
+↑65%
+
+But wait a minute…
+
+How come LLMs recognize noncanonicals at the semantic level…
+
+…but do not recognize them at the alignment level?
+
+vs
+
+● Huge datasets
+● Typos, multilingual, weird spacing give 
+prob. mass to noncanonical tokens
+
+■ Smaller datasets
+■ Curated RLHF regime with fewer typos
+■ Usually monolingual
+
+Should post-training incorporate elements from pre-training?
+
+Main Takeaways
+
+Non-canonical tokenizations…
+✔ … retain semantic understanding
+✔ … break alignment
+✔ … should be incorporated in post-training?
+
+Adversarial tokenization…
+✔ … is very easy to implement
+✔ … easily elicit bad behavior from LLMs
+
+Probabilistic reasoning is hard
+✘ Computing the conditional most likely tokenization (exactly) is hard
+
+Adversarial Tokenization
+
+Renato Geh*, Zilei Shao*, Guy Van den Broeck
+
+University of California, Los Angeles
+
+Circuit Compilation for a String
+
+Circuit Compilation for a String across Distances
+
+Hardness Reduction
+
+Define string
+
+Given a 3-CNF
+
+Bijection:
+
+and tokenizations {(ab, c), (a, bc)}
+
+

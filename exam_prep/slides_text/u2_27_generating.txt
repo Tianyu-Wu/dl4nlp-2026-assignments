@@ -1,0 +1,227 @@
+Machine Learning for Natural Language
+Processing
+Generating Text from a Language Model
+
+Richard Johansson
+
+richajo@chalmers.se
+
+generating text from a language model
+
+· assuming we have P (X), how do we generate or “decode”?
+
+· we will discuss the most common algorithms for
+autoregressive LMs
+· there are several algorithms: this is an active research area
+
+-20pt
+
+use cases: generating from a prompt
+
+· given a prefix or “prompt”, how do we find
+
+text
+
+∗ = arg max
+text
+
+P (text|prompt)
+
+-20pt
+
+use cases: sampling
+
+· if we have P (X), how can we generate random texts?
+· again, we might want to use a prompt
+
+text ∼ P (text|prompt)
+
+-20pt
+
+unsupported use cases
+
+· it is difficult to solve “fill-in-the-blank” tasks with
+autoregressive LMs
+· what is the most likely missing text?
+
+NLP stands for ___ . It is a method…
+
+-20pt
+
+first idea: greedy decoding
+
+· select the highest-scoring alternative at each step
+
+-20pt
+
+greedy decoding: pseudocode
+
+initialize X = x1, . . . , xm to some token sequence
+for i = m + 1, . . . until some stopping criterion met
+
+xi ← arg maxx P (x|X)
+append xi to X
+
+return X
+
+-20pt
+
+-20pt
+
+-20pt
+
+-20pt
+
+-20pt
+
+-20pt
+
+does not find the highest-scoring sequence
+
+BUT:
+
+pros and cons of greedy decoding
+
+fast and easy to implement
+
+-20pt
+
+pros and cons of greedy decoding
+
+fast and easy to implement
+
+BUT:
+does not find the highest-scoring sequence
+
+-20pt
+
+-20pt
+
+-20pt
+
+-20pt
+
+-20pt
+
+as an approximation, let’s keep k candidates at each step
+
+this idea is called beam search
+
+beam search decoding
+
+problem: we can’t consider all possible sequences
+
+-20pt
+
+beam search decoding
+
+problem: we can’t consider all possible sequences
+
+as an approximation, let’s keep k candidates at each step
+
+this idea is called beam search
+
+-20pt
+
+beam search decoding: pseudocode
+
+set the beam width k
+initialize X = x1, . . . , xm to some token sequence
+B ← [X]
+for i = m + 1, . . . until some stopping criterion met
+
+C ← [ ]
+for each b in B
+
+compute P (x|b)
+add b + [x] to C for all x in the vocabulary
+
+B ← select k top-scoring candidates from C
+
+return top-scoring beam from B
+
+-20pt
+
+drawbacks of greedy and beam search decoding
+
+· generated texts can be bland and uninformative
+· the generation often has problems with repetition
+
+-20pt
+
+drawbacks of greedy and beam search decoding
+
+· generated texts can be bland and uninformative
+· the generation often has problems with repetition
+
+-20pt
+
+· some research describing these problems: (Holtzman et al.,
+2020), (Kulikov, 2022)
+· repetition poorly understood theoretically (Fu et al., 2021)
+
+-20pt
+
+sampling
+
+initialize X = x1, . . . , xm to some token sequence
+for i = m + 1, . . . until some stopping criterion met
+
+xi ∼ P (x|X)
+append xi to X
+
+return X
+
+-20pt
+
+drawbacks of sampling
+
+-20pt
+
+improving sampling: truncating the distribution (1)
+
+in top-k sampling, we only include the k most probable words
+when sampling:
+
+-20pt
+
+improving sampling: truncating the distribution (2)
+
+in top-p or nucleus sampling (Holtzman et al., 2020), we select the
+most probable tokens with a probability mass of at least p:
+
+-20pt
+
+improving sampling: temperature
+
+temperature T : divide the logits by T before applying the softmax
+
+T = 0.5
+
+T = 1
+
+T = 2
+
+-20pt
+
+conclusion
+
+-20pt
+
+references
+
+Z. Fu, W. Lam, A. M.-C. So, and B. Shi. 2021. A theoretical analysis of the repetition
+
+problem in text generation. In AAAI.
+
+A. Holtzman, J. Buys, L. Du, M. Forbes, and Y. Choi. 2020. The curious case of
+
+neural text degeneration. In ICLR.
+
+I. Kulikov. 2022. Characterizing and Resolving Degeneracies in Neural Autoregressive
+
+Text Generation. Ph.D. thesis, New York University.
+
+-20pt
+
+

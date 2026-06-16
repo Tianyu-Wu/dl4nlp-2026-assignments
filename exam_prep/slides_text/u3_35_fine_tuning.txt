@@ -1,0 +1,173 @@
+Machine Learning for Natural Language
+Processing
+Efficient Fine-tuning Methods for Language
+Models
+
+Richard Johansson
+
+richajo@chalmers.se
+
+Examples:
+
+BERT → BioBERT
+
+LLaMA → Alpaca, Vicuna (and other instruction tuning)
+
+Pre-training and fine-tuning
+
+-20pt
+
+Pre-training and fine-tuning
+
+Examples:
+
+BERT → BioBERT
+LLaMA → Alpaca, Vicuna (and other instruction tuning)
+
+-20pt
+
+Full fine-tuning can be costly
+
+It takes a lot of time
+
+It takes a lot of space
+
+It takes a lot of memory
+
+-20pt
+
+Can we tune just the output head?
+
+Simple approach: fine-tune just the top layer
+
+But: as shown in the BERT paper (and elsewhere), fine-tuning the
+whole model is generally more effective
+
+-20pt
+
+Prompt and prefix tuning
+
+-20pt
+
+Prompt and prefix tuning: intuition
+
+Variations:
+
+One or more additional embeddings?
+
+Parameters only in bottom or in several layers?
+
+-20pt
+
+Variations:
+
+One or more additional embeddings?
+
+Parameters only in bottom or in several layers?
+
+Prompt and prefix tuning: intuition
+
+-20pt
+
+Prompt and prefix tuning: intuition
+
+Variations:
+
+One or more additional embeddings?
+
+Parameters only in bottom or in several layers?
+
+-20pt
+
+Adapters
+
+-20pt
+
+Adapters: intuition
+
+-20pt
+
+Adapters: intuition
+
+-20pt
+
+https://adapterhub.ml/
+
+-20pt
+
+LoRA: Low-rank Adaptation
+
+-20pt
+
+Use a low-rank decomposition of the difference term:
+
+WFT = WPT + BA
+
+LoRA: Key ideas
+
+Rewrite fine-tune weights in terms of difference to pre-trained:
+
+WFT = WPT + ∆W
+
+-20pt
+
+LoRA: Key ideas
+
+Rewrite fine-tune weights in terms of difference to pre-trained:
+
+WFT = WPT + ∆W
+
+Use a low-rank decomposition of the difference term:
+
+WFT = WPT + BA
+
+-20pt
+
+PEFT library in Hugging Face
+
+https://github.com/huggingface/peft
+
+-20pt
+
+Takeaways
+
+Practical adaptation of LLMs typically involves lightweight
+fine-tuning
+
+We typically add some small set of parameters that are
+fine-tuned
+
+When combined with quantization (e.g. QLoRA), we can make it
+even more efficient in time and memory
+
+-20pt
+
+References
+
+T. Dettmers, A. Pagnoni, A. Holtzman, and L. Zettlemoyer. 2023. QLoRA: Efficient
+
+finetuning of quantized LLMs. arXiv:2305.14314.
+
+N. Houlsby, A. Giurgiu, and S. Jastrzebski et al. 2019. Parameter-efficient transfer
+
+learning for NLP. In ICML.
+
+E. Hu, Y. Shen, and P. Wallis et al. 2022. LoRA: Low-rank adaptation of large
+
+language models. In ICLR.
+
+X. L. Li and P. Liang. 2021. Prefix-tuning: Optimizing continuous prompts for
+
+generation. In ACL-IJCNLP.
+
+C. Poth, H. Sterz, and Indraneil Paul et al. 2023. Adapters: A unified library for
+
+parameter-efficient and modular transfer learning. arXiv:2311.11077.
+
+R. Zhang, J. Han, and C. Liu et al. 2023. LLaMA-adapter: Efficient fine-tuning of
+
+language models with zero-init attention. arXiv:2303.16199.
+
+-20pt
+
+

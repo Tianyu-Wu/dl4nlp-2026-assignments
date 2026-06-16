@@ -1,0 +1,375 @@
+Natural Language Processing
+
+Contextualized word embeddings
+
+Marco Kuhlmann 
+Department of Computer and Information Science
+
+This work is licensed under a  
+Creative Commons Attribution 4.0 International License.
+
+Contextualized embeddings
+
+•
+
+In standard word embeddings, each word is assigned a single 
+word vector, independently of its context. 
+
+• Such a model cannot account for polysemy, the phenomenon 
+that one and the same word may have multiple meanings. 
+
+e children play in the park. e play premiered yesterday. 
+
+•
+
+In contextualized embeddings, each token is assigned a 
+representation that depends on its context.
+
+ELMo – Embeddings from Language Models
+
+• A token is represented as a task-speciﬁc, weighted sum of 
+
+representations derived from a bidirectional language model. 
+
+weights are learned for a speciﬁc task 
+
+• e basic ELMo model is frozen aer pre-training and can 
+complement or replace a standard word embedding layer. 
+
+• However, it is oen beneﬁcial to ﬁne-tune a pre-trained ELMo 
+
+model on task-speciﬁc data.
+
+Peters et al. (2018)
+
+Muppet character image from The Muppet Wiki
+
+LSTM language model
+
+play
+
+premiered
+
+yesterday
+
+<eos>
+
+Linear
+
+Linear
+
+Linear
+
+Linear
+
+LSTM
+
+LSTM
+
+LSTM
+
+LSTM
+
+Embed
+
+Embed
+
+Embed
+
+Embed
+
+the
+
+play
+
+premiered
+
+yesterday
+
+ELMo architecture 
+
+•
+
+•
+
+two bidirectional LSTM layers with a 
+residual connection between the layers 
+
+context-insensitive word representation 
+using character convolutions 
+
+• ﬁnal somax layer computes a probability 
+
+distribution over the next tokens
+
+residual  
+connection
+
+premiered
+
+Linear
+
+LSTM
+
++
+
+LSTM
+
+CLWR
+
+play
+
+Bidirectional language model
+
+play
+
+premiered
+
+yesterday
+
+<eos>
+
+Linear
+
+Linear
+
+Linear
+
+Linear
+
+LSTM
+
+LSTM
+
+LSTM
+
+LSTM
+
++
+
++
+
++
+
++
+
+LSTM
+
+LSTM
+
+LSTM
+
+LSTM
+
+CLWR
+
+CLWR
+
+CLWR
+
+CLWR
+
+the
+
+play
+
+premiered
+
+yesterday
+
+weight  
+sharing
+
+weight  
+sharing
+
+<bos>LinearLSTM+LSTMCLWRthetheLinearLSTM+LSTMCLWRplayplayLinearLSTM+LSTMCLWRpremieredpremieredLinearLSTM+LSTMCLWRyesterdayWord representations in ELMo
+
+width of the word  
+representation: 512
+
+width of the intermediate  
+representation: 2048
+
+cat
+
+Linear
+
+2x
+
+Highway
+
+||
+
+tanh
+
+max
+
+CNN
+
+7
+
+Embed
+
+Embed
+
+Embed
+
+width of each character  
+embedding: 16
+
+Filter speciﬁcation
+
+Width
+
+Channels
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+32
+
+32
+
+64
+
+128
+
+256
+
+512
+
+1024
+
+Peters et al. (2018)
+
+c
+
+a
+
+t
+
+Highway layers
+
+𝒚
+
++
+
+A highway layer computes a gated 
+combination of a linear and a  
+non-linear transformation of its input: 
+
+⊙
+
+logistic
+
+1−
+
+⊙
+
+<latexit sha1_base64="Y/ACHnzd/n9ePJH7NXuFBw6ptOY=">AAAFh3icjVRbb9MwFPZgha3cNnjkxaKatEFbmm6sG1Kl3ZhAoiysu1RqqslJTjtriR1ip1Ci/CJ+DY/An8FOw0bTTZqlNsfnfOfzufjYDjwqZK32a+bO3dnCvftz88UHDx89frKw+PRE8Ch04NjhHg87NhHgUQbHkkoPOkEIxLc9OLUvdrX9dAihoJwdyVEAPZ8MGO1Th0ilOlt4Zw3BiUcJbuJUGiTY4i6X4923BL/Cy0YlM61ktv5yZk0/28nK2UKpVq2lC08LRiaUULbMs8XZl5bLncgHJh2PCNE1aoHsxSSU1PEgKVqRgIA4F2QAXSUy4oPoxWm+CV5SGhf3eah+TOJU+79HTHzhE3mukPojitYhfIloCGZm124iACcp5k1dm3tuRciRB80P7YOy9r/a9uKIUYe7UEnpi5YA6RPKNF+3iHGbfod9IDIKQaiKxkqFcay1alfZqK6V8UGgMiRepttIyhMYBakYq3mUYeRgxmrF2KxuTuE28zgFquRRjXqiQCnyIx1cBnsEHa36FPm2ui86+hZnXKiSgqsoPLetq6DcenGLMnV5sBnyfyWQ57crwXoZ7+uWNfGYo6XLe0TZqIxTem1QqrYT0kCO/3MprY/LOM2ySwJ5HcsNFZ4mOIRB5JHwFhyX5Z8maUf2+W0YdGMa9esY9qgIcuhGvXIT8tqzdHuv2tQaX1UPpB7XpiVGvt2fGBfdP8m5JxQsCPmQuuBw3yfMtQZ0CCxW+j1Qc6rHRM2Ku6feG59KCDumaZmHBztdoxebyfJKnMRL6nQrBAZfJzksxplI47PeWq4mECo7FVIoJ0w6GB7oQ3UeJSMpqtfFyL8l08JJvWq8qdY+r5W2drJ3Zg49Ry/QMjJQA22h98hEx8hBP9BP9Bv9KcwXXhfWCxtj6J2ZzOcZmliF7b9Exrdf</latexit>
+
+Linear
+
+relu
+
+Linear
+
+𝒙
+
+where 𝑓 is an element-wise non-linearity 
+(cid:2638) (cid:30) (cid:2620) (cid:1435) (cid:2637) (cid:12) (cid:9)(cid:18) (cid:247) (cid:2620)(cid:10) (cid:1435) (cid:2568)(cid:9)(cid:2637)(cid:2588)(cid:10)
+(such as ReLU) and                      is an 
+element-wise gate. 
+
+<latexit sha1_base64="uR83u+GDBFpj14mbZLtup8WnlhI=">AAAF4HicjVRNb9NAEN1CA8V8tXDksiKNVFASxWlp2kqRohZVIBEamn5JcVSt15tkVXttvOvSYPmKuCGu/AIOXOG/8G+YdaKUOqnUlRLvvnnzZjyzHjtwuVSVyt+5W7fnc3fuLtwz7j94+Ojx4tKTI+lHIWWH1Hf98MQmkrlcsEPFlctOgpARz3bZsX22o+3H5yyU3BcHahiwrkf6gvc4JQqg00VsnTMa9xNcx5bkfY+spMBFkj62kxeni/lKuZIuPL0xx5s8Gq/W6dL8T8vxaeQxoahLpOyYlUB1YxIqTl2WGFYkWUDoGemzDmwF8ZjsxumrJLgAiIN7fgg/oXCK/u8RE0/KoWcD0yNqILM2Dc6ydSLV2+jGXASRYoKOAvUiFysf67pgh4eMKncIG0JDDrliOiAhoQqqZxjWPvsYAaU1DqWzkwGjiXElio5bkmrosvrb9l7R9l3n8tiNI8Gp77BSmiV4SqY8woUW6xgYt/lntsuIikImoSExQBjHGoVTaaO8VsR7AWRG3DG2kRSvcIBSMlezLNPM0MzVkrlZ3pzibWZ5QCplWbVqAqSU+Y73J8kesBMNvY88Gwqms2/6wpdQGOaAhOu0dRnArRs3uYC7h1uhP6mBGtysButFvKvvRR2PRJq63gdcDIs41dcGgNrQwUCN/jPvtD6q47TKDgnULJVrSjwtsM/6kUvCG2hM6j8t0o7swU0UdGdq1VkKr7kMMuxatXQdc2Ys3d/LPjXHl9UjZ9AXlyn4IgxLsE/U9zwinJexpUIiZOBLlsQFcI4t3dGApFyrMbHGSVIwkozvpTnpVLupfwHnzS2sNXD68Yyg6haOhB4PcLRCwiWz/YvYclgA+cXLltdQg7xpcQH5wXVdHsUaZe2rASRtWJCRHmx1S8+QHsw2MzvJpjdH1bL5qlz5sJZvbI+n3AJ6hp6jFWSiGmqgN6iFDhFFX9Av9Bv9ydm5r7lvue8j6q25sc9TdGXlfvwDVWfV7A==</latexit>
+
+(cid:2620) (cid:30) (cid:2789)(cid:9)(cid:2637)(cid:2589)(cid:10)
+
+Srivastava et al. (2015)
+
+ELMo – Embeddings from Language Models
+
+ELMo is a task-speciﬁc weighted sum of the  
+intermediate representations in the bidirectional language model.
+
+task-speciﬁc weights
+
+fwd
+
+bwd
+
+𝑤2
+
+𝑤1
+
+𝑤0
+
+Σ
+
+bi-LSTM representation, layer 2
+
+bi-LSTM representation, layer 1
+
+word representation
+
+ﬁnal ELMo embedding
+
+Relative improvements by using ELMo embeddings
+
+Task
+
+Baseline
+
++ ELMo
+
+Relative increase
+
+Question answering  
+(SQuAD)
+
+Coreference resolution  
+(Coref)
+
+Sentiment analysis  
+(SST-)
+
+Textual entailment  
+(SNLI)
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+

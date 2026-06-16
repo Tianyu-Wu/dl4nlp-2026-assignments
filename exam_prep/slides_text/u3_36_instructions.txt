@@ -1,0 +1,119 @@
+Machine Learning for Natural Language
+Processing
+Training Language Models to Follow Instructions
+
+Richard Johansson
+
+richajo@chalmers.se
+
+Starting point: Autoregressive text generation
+
+P (x1)
+P (x2|x1)
+P (x3|x1, x2)
+. . .
+
+-20pt
+
+Example
+
+“Please write a poem about Python programming.”
+
+-20pt
+
+Using gpt2-xl
+
+-20pt
+
+Zero-shot summarization with OPT-175B
+
+-20pt
+
+Supervised instruction fine-tuning
+
+-20pt
+
+Supervised instruction fine-tuning
+
+-20pt
+
+-20pt
+
+1836 tasks for training
+
+102 tasks for evaluation
+
+Example: Tasks in the Flan collection (Chung et al., 2022)
+
+-20pt
+
+Example: Tasks in the Flan collection (Chung et al., 2022)
+
+1836 tasks for training
+
+102 tasks for evaluation
+
+-20pt
+
+Adding more training tasks improves generalization
+
+-20pt
+
+[image from (Chung et al., 2022)]
+
+Various improvements
+
+Paraphrasing instructions
+
+Step-by-step reasoning (Kojima et al., 2022)
+
+-20pt
+
+https://github.com/google-research/FLAN/tree/main/flan/v2
+
+(Longpre et al., 2023)
+
+-20pt
+
+Using gpt2-xl-conversational
+
+-20pt
+
+Problems of supervised instruction fine-tuning
+
+-20pt
+
+Problems of supervised instruction fine-tuning
+
+-20pt
+
+Problems of supervised instruction fine-tuning
+
+-20pt
+
+Next: how to train the model with more high-level feedback
+
+Reinforcement learning with human feedback
+
+-20pt
+
+References
+
+H. Chung, L. Hou, S. Longpre, and B. Zoph et al. 2022. Scaling
+instruction-finetuned language models. arXiv:2210.11416.
+
+T. Kojima, S. S. Gu, M. Reid, Y. Matsuo, and Y. Iwasawa. 2022. Large language
+
+models are zero-shot reasoners. In ICML Workshop KRLM.
+
+S. Longpre, L. Hou, T. Vu, and A. Webson et al. 2023. The Flan collection:
+
+Designing data and methods for effective instruction tuning. arXiv:2301.13688.
+
+L. Ouyang, J. Wu, and X. Jiang et al. 2022. Training language models to follow
+
+instructions with human feedback. arXiv:2203.02155.
+
+-20pt
+
+

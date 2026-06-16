@@ -1,0 +1,368 @@
+Natural Language Processing
+
+Tokenisation fairness
+
+Marco Kuhlmann 
+Department of Computer and Information Science
+
+This work is licensed under a  
+Creative Commons Attribution 4.0 International License.
+
+Fairness in AI
+
+• Fairness in AI concerns whether model behaviours or outcomes 
+systematically advantage or disadvantage certain users or groups. 
+
+gender, ethnicity, socioeconomic status, language, … 
+
+• Bias can enter AI systems at multiple stages, making fairness a 
+
+system-level property rather than a single ﬁx. 
+
+data collection, model architecture, optimisation objectives, deployment 
+
+• Fairness is contextual and normative. It requires explicit choices 
+
+rather than a one-size-ﬁts-all technical deﬁnition.
+
+Languages of the world
+
+Languages by region of origin
+
+Population by region of origin
+
+l
+
+e
+u
+g
+o
+o
+n
+h
+t
+E
+m
+o
+r
+f
+n
+e
+k
+a
+t
+a
+t
+a
+D
+
+Oceania1 313Europe287Americas1 061Asia2 294Africa2 144Oceania7MEurope1720MAmericas51MAsia3980MAfrica887M 
+ 
+ 
+Tokenisation premiums
+
+In GPT-4, the tokenisation length for Swedish  
+is 1.58 times that of English.
+
+Petrov et al. (2023)
+
+Tokenisation premiums
+
+For Shan, the factor is 15.05.
+
+“Tokenisation premium” relative to English (Petrov et al., 2023) – Link
+
+Language
+
+GPT-4
+
+GPT-2
+
+BLOOM
+
+Spanish
+
+Swedish
+
+German
+
+Chinese (Simpliﬁed)
+
+Icelandic
+
+Standard Arabic
+
+Hindi
+
+Shan
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.
+
+Tokenisation (un)fairness
+
+Petrov et al. (2023)
+
+• Higher latency: Users of disadvantaged languages have to wait 
+
+longer for the same content to be processed. 
+
+• Higher cost: Commercial LLM services charge per token. Users 
+
+of disadvantaged languages pay more for the same task. 
+
+GPT-.: ./M tokens (input), /M tokens (output) 
+
+• Lower quality: Current models have a ﬁxed-size context window. 
+
+Users of disadvantaged languages get less quality.
+
+Unfairness due to variable-length encoding
+
+• BPE tokenisation is usually applied to byte sequences coming 
+
+from the UTF- encoding of Unicode characters. 
+
+• UTF- uses a variable-length encoding, where a Unicode 
+
+character is represented by one or several bytes. 
+
+• is encoding scheme penalises languages written in scripts with 
+
+high codepoints in the Unicode standard. 
+
+English →  byte per character, Shan →  bytes per character
+
+Block-structured encoding
+
+Land and Arnett (2025)
+
+Unicode codepoints:
+
+a
+
+Ω
+
+书
+
+🤗
+
+UTF-8 bytes:
+
+61
+
+CE
+
+A9
+
+E4
+
+B9
+
+A6
+
+F0
+
+9F
+
+A4
+
+97
+
+The proposed SCRIPT encoding maps each codepoint to a block token and an index token:
+
+L
+
+7
+
+EL
+
+45
+
+HS
+
+912
+
+EH
+
+429
+
+BPE penalises low-frequency languages
+
+language A 
+
+language B 
+
+language C 
+
+60% 
+
+30% 
+
+10% 
+
+training corpus
+
+[token 1] [token 2] → [token 3]
+
+Parity-aware BPE
+
+Foroutan et al. (2025)
+
+• BPE learns merge rules based on the most frequent pairs in the 
+
+complete corpus, implicitly favoring well-represented languages. 
+
+• Parity-aware BPE adds the merge rule that most improves the 
+language with the currently worst tokenisation eﬃciency. 
+
+• Concretely, we ﬁnd the next merge rule in the sub-corpus for the 
+
+language with the currently lowest compression rate. 
+
+• is rule is then applied to the full corpus, as in standard BPE.
+
+Parity-aware BPE
+
+language A 
+
+language B 
+
+language C 
+
+60% 
+
+30% 
+
+10% 
+
+compression rate:  
+2.63
+
+compression rate:  
+1.32
+
+compression rate:  
+1.45
+
+training corpus
+
+[token 1] [token 2] → [token 3]
+
+Parity-aware BPE
+
+language A 
+
+language B 
+
+language C 
+
+60% 
+
+30% 
+
+10% 
+
+compression rate:  
+2.63
+
+compression rate:  
+1.65
+
+compression rate:  
+1.45
+
+training corpus
+
+[token 1] [token 2] → [token 3]
+
+Compression rate
+
+Foroutan et al. (2025)
+
+• Text can be decomposed at many granularities. Here we assume 
+
+that tokeniser inputs are represented as byte-strings. 
+
+• e compression rate of a byte-string 𝑏 is the ratio between the 
+
+lengths of the original and the tokenised version of 𝑏: 
+
+<latexit sha1_base64="g2sVq90OZaSea6bGp7Y+boe8qmo=">AAAFRnicjVRdT9swFDWjbKz7gu1xL9YQEpuaqimoBaFKCCa0SetglC+pqZDj3LYWzodiB61L80P2a/bKfsL+xN6mPexldhLBSIuGpUQ35x4fX5/r2A44E7JW+zFzb7Y0d//B/MPyo8dPnj5bWHx+LPwopHBEfe6HpzYRwJkHR5JJDqdBCMS1OZzY5zs6f3IBoWC+dyhHAfRcMvBYn1EiFXS2sGpJ+CzjnYNkxX6Nrc2WtYmtfkhoPLbHSTzO0tI/B499AU0aJ2cLS7VqLR14MjDzYAnlY/9scfaP5fg0csGTlBMhumYtkL2YhJJRDknZigQEhJ6TAXRV6BEXRC9Od5fgZYU4uO+H6vEkTtF/Z8TEFWLk2orpEjkUxZwGp+W6keyv92LmBZEEj2YL9SOOpY+1VdhhIVDJRyogNGSqVkyHRHkjlaHlG8voykQA9OZW9JKGkCMOrfedvYrtc+f6sxdHHqO+A0ZaoNITIF3CPK3VLS9jvK34u3rLLRy/wR1wmVZIKmWMO6oZu0BkFILQaQVhHGtUfRnr1bUK3gtUwYTn2Ho67ZqjKIa5WmSZZoFmrhrmRnVjgrdR5CmSUWQ164kipcwPbHBV7CGcauhj5NrKR1192/d8oUwDR0lwp6MtUtN6cZt56pTi/dC/8kcOM3/+50GjgnPvMpG27sUh80YVnOrrhII6qrGBzN6FPTUyHydVdkggp6ncYvGkwAEMIk7CO2hc+T8p0ons4V0UdGea9WkKb5kICuxm3biNOXUt3d/rPrXzg8xBWhdAW5b+LfvqujCLl8NkcFyvmo1q49Pa0tZ2fnHMo5foFVpBJmqiLfQO7aMjRNFX9A1dou+ly9LP0q/S74x6byaf8wLdGHPoL83woN8=</latexit>
+
+CR
+
+tokenize
+
+• We are generally interested in a tokeniser’s average compression 
+|
+
+(𝑏)|
+
+(𝑏) =
+
+rate, which can be estimated on a text corpus.
+
+|𝑏|
+
+Summary
+
+• Tokenisers encode explicit or implicit decisions about which 
+languages get technology that is fast, cheap, and expressive. 
+
+• Fairness metrics are not just post-hoc evaluations, but can be 
+
+optimised during training. 
+
+• While there are several proposals for how to address tokenisation 
+
+unfairness, the problem is not “solved”. 
+
+new trade-oﬀs; many layers of linguistic inequality
+
+

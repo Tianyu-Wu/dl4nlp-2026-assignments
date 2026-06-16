@@ -1,0 +1,116 @@
+Fact Recall, Heuristics or Pure Guesswork? 
+Precise Interpretations of Language Models for Fact Completion
+
+Denitsa Saynova*, Lovisa Hagström*, Moa Johansson, Richard Johansson, Marco Kuhlmann 
+* Equal contribution
+
+Astrid Lindgren is originally from  Norway.
+
+Astrid Lindgren was born in  Sweden.
+
+subject
+
+relation
+
+object
+
+She was born in  Sweden.
+
+PrISM
+Precise Identiﬁcation of Scenarios for Model behavior
+
+Fact completion
+
+No
+
+e.g. “Kun-Woo Paik is also a regular guest artist at the”
+
+Generic Language Modelling
+
+Yes
+
+Confident
+
+No
+
+Yes
+
+e.g. Eksi Ekso formed in USA.
+
+Guesswork
+
+e.g. Eksi Ekso originated in Russia
+e.g. Eksi Ekso was started in France.
+
+No heuristics
+
+No
+
+Heuristics recall
+
++ synthetic subjects
+
+Yes
+
+e.g. Kye Ji-Su, a citizen of South Korea
+
+Exact fact recall
+
+Kye Ji-Su is a common name in South Korea name bias
+It was produced by Apple
+prompt bias
+lexical overlap
+Nokia N9 was produced by Nokia
+
+Previous mechanistic interpretability results
+
+Causal Tracing (Meng et al 2022)
+
+Information Flow (Geva et al 2023)
+
+PrISM Results
+Causal Tracing
+
+Generic language
+
+Guesswork
+
+Heuristics recall
+
+Exact fact recall
+
+PrISM Results
+Information Flow
+
+Accuracy does not indicate a consistent recall pattern 
+
+PrISM: Provides a taxonomy of four prediction scenarios 
+
+Summary
+
+• Exact fact recall 
+
+• Heuristics recall 
+
+• Guesswork 
+
+• Generic language modelling 
+
+CT and IFA indicate diﬀerent recall mechanisms 
+
+saynova@chalmers.se 
+lovhag@chalmers.se
+
+NLP@DSAI 
+https://dsai-nlp.github.io/
+
+Fact Recall, Heuristics 
+or Pure Guesswork?
+Precise Interpretations of Language 
+Models for Fact Completion
+
+Denitsa Saynova*, Lovisa Hagström*,  
+Moa Johansson, Richard Johansson, Marco Kuhlmann 
+* Equal contribution
+
+

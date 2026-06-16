@@ -1,0 +1,646 @@
+Natural Language Processing
+
+Attention
+
+Marco Kuhlmann  
+Department of Computer and Information Science
+
+This work is licensed under a  
+Creative Commons Attribution 4.0 International License.
+
+Contextual embeddings
+
+• Standard word embeddings map each word to a ﬁxed vector. 
+
+•
+
+In natural language, word meaning is not static, but depends on 
+the surrounding words. 
+
+Dogs may bark at strangers. Trees shed bark in winter. 
+
+• Contextual embeddings assign word vectors dynamically, 
+
+conditioned on context.
+
+Contextual embeddings
+
+children
+
+play
+
+games
+
+0.07, 0.42
+
+0.88, 0.32
+
+0.76, 0.61
+
+0.19, 0.68
+
+0.46, 0.05
+
+0.09, 0.43
+
+contextual  
+embedding
+
+0.07, 0.09
+
+0.55, 0.63
+
+0.88, 0.87
+
+static  
+embedding
+
+0.17, 0.32
+
+0.76, 0.39
+
+0.28, 0.73
+
+children
+
+play
+
+games
+
+Contextual embeddings
+
+the
+
+play
+
+ﬂopped
+
+0.76, 0.43
+
+0.49, 0.12
+
+0.77, 0.59
+
+0.26, 0.49
+
+0.71, 0.01
+
+0.68, 0.01
+
+contextual  
+embedding
+
+0.79, 0.80
+
+0.69, 0.18
+
+0.74, 0.39
+
+static  
+embedding
+
+0.15, 0.93
+
+0.76, 0.39
+
+0.57, 0.12
+
+the
+
+play
+
+ﬂopped
+
+ELMo – Embeddings from Language Models
+
+play
+
+premiered
+
+yesterday
+
+[EOS]
+
+Linear
+
+Linear
+
+Linear
+
+Linear
+
+LSTM
+
+LSTM
+
+LSTM
+
+LSTM
+
++
+
++
+
++
+
++
+
+LSTM
+
+LSTM
+
+LSTM
+
+LSTM
+
+Embed
+
+Embed
+
+Embed
+
+Embed
+
+the
+
+play
+
+premiered
+
+yesterday
+
+)
+8
+1
+0
+2
+(
+
+.
+l
+
+a
+t
+e
+s
+r
+e
+t
+e
+P
+
+[BOS]LinearLSTM+LSTMEmbedthetheLinearLSTM+LSTMEmbedplayplayLinearLSTM+LSTMEmbedpremieredpremieredLinearLSTM+LSTMEmbedyesterday 
+ 
+ 
+Contextual embeddings via attention
+
+•
+
+In attention, each word vector 𝒉𝑖 is the weighted sum of all the 
+word vectors 𝒉𝑗 computed at the previous layer: 
+
+<latexit sha1_base64="vIvCPMPe7TaFYPgwDDUnW6LOkEM=">AAAFgHicjVRbTxNBFB6QKtYb6KMvEwkJ0bZ0C7YgaULAICZWkHJLurWZnT1tB2Yv2Zkl1sn+JX+NLz7ob3FmW7lsS2SS3Zw95zvfnPnO7HFCzoQsl39NTd+byd1/MPsw/+jxk6fP5uafH4sgjigc0YAH0alDBHDmw5FkksNpGAHxHA4nzvm2iZ9cQCRY4B/KQQhtj/R81mWUSO3qzO3aF0BVP/mqbOD8jZV0GLY36vYGtiV8k0IOONgi9jrqLME24WGfdBQz9vW8pHPWmVsol8rpwuOGNTIW0Gjtd+ZnsO0GNPbAl5QTIVpWOZRtRSLJKIckb8cCQkLPSQ9a2vSJB6Kt0iMneFF7XNwNIv34Eqfe6xmKeEIMPEcjPSL7IhszzkmxViy7a23F/DCW4NPhRt2YYxlgox92WQRU8oE2CI2YrhXTPokIlVrlG7uYwkQI9OZJzI7FVNb6x+ZewQm4e/XZVrHPaOBCMa0vbwuQHmG+oWrlFzHe0vAdc+A6Vq9xEzxmCJJCHuMm+w47QGQcgTBh7cJYGa/+Kq6VVgt4L9TlEj7yraVpVxgNKVorWZRlZWDWStFaL62P4dazOA0qZlG1SqJBKfIT610WewinxvU59hytoqm+EfiB0JqBqym42zQK6bS2ajBfX1y8HwX/5JH9oTz/k6BawCPphhwN04lD5g8KOKU3Ae1q6q6GcvjOHKk6lHGcZZuEchLLLQqPExxAL+YkugPHpfzjJM3Y6d+FwTSmVpnE8J6JMIOuVYq3ISfuZdp71abG8BpzkGZe1G3zS3bztgtdPa/Sn1ZxFjs8hkQdfNhKVMUqYKtWLuBK5W2iZ4qVnSDjxnGlZFVL1S+rC5tbo+kyi16iV2gJWaiGNtEu2kdHiKIf6Cf6jf7kpnNLueWcNYROT41yXqAbK/fuL1PNs7w=</latexit>
+
+• e weights 𝛼𝑖𝑗 express how much the model should “attend to” 
+the context vector 𝒉𝑗 at layer 𝓁 when forming 𝒉𝑖 at layer 𝓁+1. 
+
+𝒉
+
+ℓ+1
+𝑖
+
+ℓ
+𝑗
+= ∑𝑗 𝛼𝑖𝑗𝒉
+
+• e weights are proportional to the vector similarity between 𝒉𝑖 
+
+and the context vectors, and are learned during training.
+
+Contextual embeddings via attention
+
+𝒉1
+
+Children
+
+𝒉2
+
+play
+
+𝒉3
+
+games
+
+Contextual embeddings via attention
+
+𝒉2
+
+𝒉2
+
+𝒉2
+
+𝒉1
+
+Children
+
+𝒉2𝒉2𝒉2
+𝒉2
+
+play
+
+𝒉3
+
+games
+
+Contextual embeddings via attention
+
+𝒉2
+
+𝒉2
+
+𝒉2
+
+𝒉1
+
+𝒉1
+𝒉1
+
+Children
+
+𝒉2
+
+𝒉2
+𝒉2
+
+play
+
+𝒉3
+
+𝒉3
+𝒉3
+
+games
+
+Contextual embeddings via attention
+
+𝒉2
+
+𝒉2
+
+•
+
+𝒉1
+
+𝒉1
+
+Children
+
+•
+
+𝒉2
+
+𝒉2
+
+play
+
+𝒉2
+
+•
+
+𝒉3
+
+𝒉3
+
+games
+
+scaled dot  
+product:
+
+<latexit sha1_base64="B2QGZ65vemqpmk3KElLJLkd+DcU=">AAAFynicjVRbb9owFE67snXs1m6Pe7GGKnUSIEIroJOQqrbqNqmsDHqTMGNOcgCvSZzaDhOz8rbftv+w/7DX7Xk20AvQSrWUxDnnO599rk7kUyELhd8Liw+WUg8fLT9OP3n67PmLldWXJ4LF3IVjl/mMnzlEgE9DOJZU+nAWcSCB48Opc75r9KcD4IKy8EgOI2gHpBfSLnWJ1KLOylc84lA+jXschgnCA3BVP+lQhAMi+yxS2Il9H+S16huqItzlxFU3wJe6L1iyKFFYXHCpvCTprGQK+cJoofmNPdlkrMmqd1aXGthjbhxAKF2fCNGyC5FsK8IldX1I0jgWEBH3nPSgpbchCUC01ciNBK1piYe6jOsnlGgkvWmhSCCMXxppPiKNG3ARUw71id6YiQjcJD2rajnM93JCDn2ofmweZo399W9bxSF1mQe5EX0aC5ABoaHha6URatIfsA9ExhyEjp/SIoSUkeq/XCW/mUWHkfaQ+BNZJclOYTQkZ2/Momx7BmZv5Oyt/NYcbmsWp0G5WVS5mGjQCHlAe1eXPYIzI/oUB44uJXP7GguZ0CEFT1P4XtNEQZu1VY2Guq5QnbPLEMj+/UJQyqJ9k7IqGnPUTHiPaDjMohG9UWhR0+U0kuP3jEulcRjnWXZJJG9juSPC8wQN6MU+4ffguAr/PEkzdvr3YTCJKRdvY9ijIppBl4u5u5C3nmXSe52m2rhUdXeb/q1iMQyc7lS7mPxJxnyhYRFnA+qBy4KAhB7u0QGESsv3QPepaRPdK96eHkUBlcDP6nVcbxzutOy2qifrb1Wi1vTpmEMI36c5cMhCMboffoc9QyC0d/pKXE6pxgPJHGr8yNj6bA+6evJNzzDVeL+TqEo5i+yCriq7WDJTyJ6dOfObk2LeLuVLnzcz25XJPFq2XltvrHXLtsrWtvXBqlvHlmv9sv5Yf61/qYMUTw1TagxdXJjYvLKmVurnfxLQ1Rg=</latexit>
+
+𝒉𝑖 • 𝒉𝑗 =
+
+⊤
+𝑗
+𝒉𝑖𝒉
+√𝑑
+
+Contextual embeddings via attention
+
+𝜶
+
+softmax
+
+•
+
+𝒉2
+
+𝒉2
+
+play
+
+𝒉2
+
+𝒉2
+
+•
+
+𝒉1
+
+𝒉1
+
+Children
+
+attention  
+weights
+
+𝒉2
+
+•
+
+𝒉3
+
+𝒉3
+
+games
+
+Contextual embeddings via attention
+
+[𝒉1 ; 𝒉2 ; 𝒉3]
+
+𝒉2
+
+𝒉2
+
+•
+
+𝒉1
+
+𝒉1
+𝒉1
+
+Children
+
+𝜶
+
+softmax
+
+•
+
+𝒉2
+
+𝒉2
+𝒉2
+
+play
+
+𝒉2
+
+•
+
+𝒉3
+
+𝒉3
+𝒉3
+
+games
+
+Contextual embeddings via attention
+
+𝓁+1
+
+𝒉2
+
+[𝒉1 ; 𝒉2 ; 𝒉3]
+
+<latexit sha1_base64="mq/x6GdIs1huyKdeUze8l+i8wZo=">AAAFbHicjVTbbtNAEN2WBkq4tAXeKqQVVRFCcRS7IWkfKlUtKiARWprepDiK1utJsur6Iu+6Ilj+Eb6GV/gDfoJvYNcOLXFS0ZVsjWfOnpk9sx4n5EzIWu3X3PydhdLde4v3yw8ePnq8tLzy5FQEcUThhAY8iM4dIoAzH04kkxzOwwiI53A4cy72dPzsEiLBAv9YjkLoemTgsz6jRCpXb7luS/gihRxxsEXs9Ri2CQ+HRBmJndEnnMUOjyG1L4Emw7TH0t7yWq1ayxaeNsyxsYbG67C3soBtN6CxB76knAjRMWuh7CYkkoxySMt2LCAk9IIMoKNMn3ggukmWP8XryuPifhCpx5c48/67IyGeECPPUUiPyKEoxrRzVqwTy/5mN2F+GEvwaZ6oH3MsA6y1wi6LgEo+UgahEVO1YjokEaFSKTqRRRcmQqCTJ9EZjUzb7Q/tg4oTcPf6s5vEPqOBC0ZWX9kWID3CfE3VKa9jvKvg+/rA2zh5jdvgMU2QVsoYt9lX2Aci4wiEDisXxon2qi9js1qv4INQlUv42LeZbbvGKIhhbhRRplmAmRuGuVXdmsJtFXEKZBRRTStVoAz5kQ2uij2Gc+36FHuOUlFX3wr8QCjNwFUU3G1rhdS2btJivrqk+DAK/sojh7k8/5OgUcFj6XKOlu7EMfNHFZzR64BytVVXQ5m/C0dq5DJOs+yRUM5iuUHhaYIjGMScRLfguJJ/mqQdO8PbMOjGNK1ZDG+ZCAvopmXchJyZS7f3uk2t/BpzkHpSbNv6l+yXbRf6ajZNjpLk6N1umlhmBZvNWgVb1hs9U8ziBJk2Tq2q2ag2PtfXdurj6bKIVtEL9AqZqIl20Ht0iE4QRd/Qd/QD/Vz4XXpWWi09z6Hzc+M9T9HEKr38A4AUrT8=</latexit>
+
+𝜶
+∑𝑖 𝛼𝑖𝒉𝑖
+softmax
+
+•
+
+𝒉2
+
+𝒉2
+
+play
+
+𝒉2
+
+•
+
+𝒉3
+
+𝒉3
+
+games
+
+𝒉2
+
+𝒉2
+
+•
+
+𝒉1
+
+𝒉1
+
+Children
+
+Queries, keys, and values
+
+𝓁+1
+
+𝒉2
+
+values
+
+[𝒉1 ; 𝒉2 ; 𝒉3]
+
+<latexit sha1_base64="mq/x6GdIs1huyKdeUze8l+i8wZo=">AAAFbHicjVTbbtNAEN2WBkq4tAXeKqQVVRFCcRS7IWkfKlUtKiARWprepDiK1utJsur6Iu+6Ilj+Eb6GV/gDfoJvYNcOLXFS0ZVsjWfOnpk9sx4n5EzIWu3X3PydhdLde4v3yw8ePnq8tLzy5FQEcUThhAY8iM4dIoAzH04kkxzOwwiI53A4cy72dPzsEiLBAv9YjkLoemTgsz6jRCpXb7luS/gihRxxsEXs9Ri2CQ+HRBmJndEnnMUOjyG1L4Emw7TH0t7yWq1ayxaeNsyxsYbG67C3soBtN6CxB76knAjRMWuh7CYkkoxySMt2LCAk9IIMoKNMn3ggukmWP8XryuPifhCpx5c48/67IyGeECPPUUiPyKEoxrRzVqwTy/5mN2F+GEvwaZ6oH3MsA6y1wi6LgEo+UgahEVO1YjokEaFSKTqRRRcmQqCTJ9EZjUzb7Q/tg4oTcPf6s5vEPqOBC0ZWX9kWID3CfE3VKa9jvKvg+/rA2zh5jdvgMU2QVsoYt9lX2Aci4wiEDisXxon2qi9js1qv4INQlUv42LeZbbvGKIhhbhRRplmAmRuGuVXdmsJtFXEKZBRRTStVoAz5kQ2uij2Gc+36FHuOUlFX3wr8QCjNwFUU3G1rhdS2btJivrqk+DAK/sojh7k8/5OgUcFj6XKOlu7EMfNHFZzR64BytVVXQ5m/C0dq5DJOs+yRUM5iuUHhaYIjGMScRLfguJJ/mqQdO8PbMOjGNK1ZDG+ZCAvopmXchJyZS7f3uk2t/BpzkHpSbNv6l+yXbRf6ajZNjpLk6N1umlhmBZvNWgVb1hs9U8ziBJk2Tq2q2ag2PtfXdurj6bKIVtEL9AqZqIl20Ht0iE4QRd/Qd/QD/Vz4XXpWWi09z6Hzc+M9T9HEKr38A4AUrT8=</latexit>
+
+𝜶
+∑𝑖 𝛼𝑖𝒉𝑖
+softmax
+
+•
+
+𝒉2
+
+𝒉2
+
+play
+
+𝒉2
+
+•
+
+𝒉3
+
+𝒉3
+
+games
+
+query
+
+𝒉2
+
+key
+
+𝒉2
+
+•
+
+𝒉1
+
+𝒉1
+
+Children
+
+A general characterisation of attention
+
+•
+
+In general, attention can be described as a mapping from a 
+query 𝒒 and a set of key–value pairs ⟨𝒌𝑖, 𝒗𝑖⟩ to an output. 
+
+• e output is the weighted sum of the 𝒗𝑖, where the weight of 
+
+each 𝒗𝑖 is given by the attention score between 𝒒 and 𝒌𝑖:
+
+softmax
+
+score
+
+<latexit sha1_base64="9AoRSjPvr/XONyXAhkthGHsuI+o=">AAAGRHicjVRRbxNHED4DLuDSEugjfVgRISWSbfkOYieVIqEQ0VYlxI2TEMlnRXt3Y2fF3u6xuxdwT/vKT+Gn9D/wH3ir+lp19nxAbAcpK93d3sw338zO7EyUcaZNp/Oxdu36jfp3N2/dbnx/54cf767cu3+sZa5iOIoll+okoho4E3BkmOFwkimgacThVfT6mdO/OgelmRSHZprBKKUTwcYspgZFpyvvw3OIi5Dy7IzaU0a2SWjgnSm0HJuUvrNhxCZ8rZLFUoFdK8LSbcFZLhUVE7Alxxtrm+SCbqJgOtP8Ye2641HrF/URzyvLY2tPV1Y77U65yPLGrzarXrX6p/dufAgTGecpCBNzqvXQ72RmVFBlWMzBNsJcQ0bj13QCQ9wKmoIeFaV3Sx6hJCFjqfARhpTSixYFTXVKzRki3Uc3wgN4kzMF/UrvzHQGsW0sqoaR5ElLmymH7d8H+01n//V3VOSCxTKBVknfCDVgmplwfMMGIQP2FzwHanIFGmtRoIiQwknxr7XZftIk+xmekPJKtmmbcxiEtPzHiyjfX4D5j1v+VntrCbe1iENQaxHVCyyCSuQLNvkS7CGcONHLPI3wwrno96SQGlMKCVLwZOCygGajYo8JvH2kr+TnFJizq6Wg2yTPXcm2yYxjz6X3kIlpk5T0ToGiQaxYZmbvhSN1Z2lcZnlGM3MZyzcyvExwAJOcU3UFji/pXyYZ5NHZVRhcYXrBZQy7TGcL6F7Q+hbyUl+uvF/LtDe7qhyMa9ftUE/TaDzXLq5+RkquEZYpec4SiGWaUpGEE3YOokD5LmCfujbBXkl2cWClzIA66ffD/sH+ztAfFX27tl7Y4hF6DxUIeDvPEQopdBlf+EuYOAKNp8OQlJlTuWBk5py6c6z66DuBMc7H+dFTHPy6Y4vAbxK/12mSINhYBlbzrYJuYLp7eAE3gmVkOe1muM0eUnYQ5wdd28DJ5i/OseXNcdD2u+3un09Wn+5UM+6W98B76K15vtfznnq/eX3vyIu9T7X7tQe1n+t/1z/V/6n/O4Neq1U2P3lzq/7f/xS6AaE=</latexit>
+
+<latexit sha1_base64="MS11dj+s3F+Gl3PVPwpCscZQ5yc=">AAAG7niclVTdbts2FKa7zuu8v3S7HAZwCwp0gG1YamMnGwwUbdBt6LK4cZIGsLyAkk4UohSpkpQHT9BrFLsZdjfsIXa7vcPeZoeym86yC2QCJJLf+fidw3N0GGaCG9vr/dO48dbNt5vv3Hq39d77H3z40dbtj0+NynUEJ5ESSp+FzIDgEk4stwLOMg0sDQU8C58/cvZnM9CGK3ls5xlMU5ZIfsEjZhFSW7+QggQkIooIfDWuBOEkr+aMSJIQICUyZjhGaH2Bq5JQRDha6eefkR8Rjck5eYp4u7J8jd/NqgnOgcxXFJ9sVJQVYhFLkWdw5Xw8uYaPEMe8FvXp//BxuuJjcTJKhq8iON/a7nV71UPXJ95ysk2Wz+j89s3fg1hFeQrSRoIZM/F6mZ0WTFseCShbQW4gY9FzlsAEp5KlYKZFVdqS3kEkphdK4ystrdD/7ihYalJmL5HpBtMKjuBFzjWMlna3zWQQla26aRIqEXeMnQsYfjc+bLv9r5fTIpc8UjF0KvlWYMCmjEunN2lROuY/w2NgNtdg6JAWCFFaOBRXnd3u/TY9zPCETCyx3bK9wkFKx7tXZ3lejebd63h73b013l6dh6ROnTXwSyRVzO95chXsMZw56Ic8DbE1XPQH2AsGUwoxSoh47LKA26bFAZfYJ3Sk1asU2MvrpaDfpo9dyYZ0oXHg0nvM5bxNK3lnQGgcaZ7Zxbd2pP4ijesqj1hmN6m8IcPrAkeQ5ILpa2hcpX9dZJyHl9dRcIUZ+JsU9rnJauyB33kTc6MvV97XZTpY/KoCbDCDaBiYeRperLSLq59VShikZVrNeAyRSlMm4yDhM5AF4vuAferaBHsl3serNeUW9NloFIyODh9OvGkxKu9+WZTFHfQeaJDw06pGIJU0VXzBV0HsBAyeDkPSdsXkglGZc+rOse2h7xgu8Cav2rwQPA9FDmVx9M3DsvC9NvUGvTb1/Z11otJMJlfUHUz3AH/AHX+dmWiYL3m7A5TsIc/z+2ULbzavfo+tT079rtfv9p/e336wu7zjbpFPyRfkLvHIgDwg35IROSFR42Xjz8Zfjb+bWfNl89fmbwvqjcZyzydk5Wn+8S/iagN4</latexit>
+
+𝜶𝑖 =
+𝒒 ∈ ℝ
+
+𝑑𝑄
+
+(
+𝑛×𝑑𝐾
+, 𝑽 ∈ ℝ
+
+(𝒒, 𝑲))𝑽
+𝑛×𝑑𝑉
+, 𝑑𝑄 = 𝑑𝐾
+
+, 𝑲 ∈ ℝ
+
+Vaswani et al. (2017)
+
+Attention in the Transformer
+
+output
+
+Linear
+
+scaled dot-product attention
+
+queries
+
+keys
+
+values
+
+LinearQ
+
+LinearK
+
+LinearV
+
+input
+
+output  
+projection
+
+input  
+projections
+
+Scaled dot-product attention in PyTorch
+
+# Input: queries q, keys k, values v 
+
+# shape of q, k, v: [num_words, d] 
+
+# Compute the attention scores (scaled dot product) 
+
+scores = q @ k.transpose(-1, -2) / hidden_dim**0.5 
+
+# shape of scores: [num_words, num_words] 
+
+# Normalise the attention scores 
+
+alphas = F.softmax(scores, dim=-1) 
+
+# shape of alphas: [num_words, num_words] 
+
+# The output is the alpha-weighted sum of the values 
+
+result = alphas @ v 
+
+# shape of result: [num_words, d]
+
+Multi-head attention
+
+output
+
+1024
+
+Linear
+
+1024
+
+concat
+
+Head 1
+
+512
+
+512
+
+Head 2
+
+scaled dot-product attention
+
+scaled dot-product attention
+
+512
+
+512
+
+512
+
+512
+
+512
+
+512
+
+Linear1Q
+
+Linear1K
+
+Linear1V
+
+Linear2Q
+
+Linear2K
+
+Linear2V
+
+1024
+
+1024
+
+1024
+
+input
+
+

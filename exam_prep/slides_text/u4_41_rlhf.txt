@@ -1,0 +1,165 @@
+Machine Learning for Natural Language
+Processing
+Training Language Models with Reinforcement
+Learning
+
+Richard Johansson
+
+richajo@chalmers.se
+
+-20pt
+
+Starting point: Pre-training and supervised instruction
+tuning
+
+-20pt
+
+Problem: How to train for high-level quality
+
+-20pt
+
+But: how do we define the reward?
+
+Idea: learn a reward model from human preferences
+
+Reinforcement learning: A more suitable framework?
+
+Maximum likelihood of individual tokens may be too primitive
+
+On a high level, RL optimizes the model to maximize the
+expected reward
+
+E[R]
+
+max
+ϕ
+
+The reward can implement our notion of “text quality”
+
+-20pt
+
+Reinforcement learning: A more suitable framework?
+
+Maximum likelihood of individual tokens may be too primitive
+
+On a high level, RL optimizes the model to maximize the
+expected reward
+
+E[R]
+
+max
+ϕ
+
+The reward can implement our notion of “text quality”
+
+But: how do we define the reward?
+Idea: learn a reward model from human preferences
+
+-20pt
+
+Generating and ranking
+
+-20pt
+
+Generating and ranking
+
+-20pt
+
+The Bradley–Terry binary preference model
+
+P (y1 preferred over y0) = σ(rθ(x, y1) − rθ(x, y0))
+
+InstructGPT initialized the reward model from a pre-trained GPT
+
+-20pt
+
+Policy gradient methods compute (approximate) gradients in the
+
+direction of increasing the reward
+
+Intuition: sample some sequences and adjust the model to prefer
+
+high-reward sequences
+
+Reinforcement learning and policy gradient methods
+
+There is a great variety of methods in RL building on many
+theoretical frameworks
+
+-20pt
+
+Reinforcement learning and policy gradient methods
+
+There is a great variety of methods in RL building on many
+theoretical frameworks
+
+Policy gradient methods compute (approximate) gradients in the
+direction of increasing the reward
+
+Intuition: sample some sequences and adjust the model to prefer
+high-reward sequences
+
+-20pt
+
+Proximal Policy Optimization
+
+Many RL training methods suffer from stability problems
+
+InstructGPT uses a policy gradient method called Proximal Policy
+Optimization (PPO) that includes several tricks for stabilization
+
+-20pt
+
+PPO in InstructGPT
+
+obj(ϕ) = E(x,y)∼D
+
+[rθ(x, y) − β log(πRL
+
+ϕ (y|x)/πSFT(y|x))]
+
+πRL
+ϕ
+
++γEx∼Dpretrain[log πRL
+
+ϕ (x)]
+
+-20pt
+
+For the implementation details…
+
+-20pt
+
+Full LLM training procedure: Summary
+
+-20pt
+
+What is the effect of RLHF?
+
+-20pt
+
+More reading and open-source RLHF implementations
+
+HuggingFace’s tutorial gives a description of RLHF and some
+open-source implementations
+
+The TRL library allowes RLHF to be applied to HuggingFace
+models
+https://github.com/huggingface/trl
+
+-20pt
+
+references
+
+L. Ouyang, J. Wu, and X. Jiang et al. 2022. Training language models to follow
+
+instructions with human feedback. arXiv:2203.02155.
+
+R. Zheng, S. Dou, and S. Gao et al. 2023. Secrets of RLHF in large language
+
+models. Part I: PPO. arXiv:2307.04964.
+
+-20pt
+
+
